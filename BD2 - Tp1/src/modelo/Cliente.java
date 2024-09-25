@@ -9,7 +9,7 @@ public class Cliente {
 	private String apellido;
 	private int dni;
 	private String email;
-	private List<String> tarjetas;
+	private List<Tarjeta> tarjetas;
 	
 	public Cliente(String nombre, String apellido, String dni, String email) {
 		verificarCampo(nombre);
@@ -24,7 +24,7 @@ public class Cliente {
 		this.tarjetas = new ArrayList<>();
 	}
 	
-	public Cliente(String nombre, String apellido, Integer dni, String email, List<String> tarjetas) {
+	public Cliente(String nombre, String apellido, Integer dni, String email, List<Tarjeta> tarjetas) {
 		verificarCampo(nombre);
 		verificarCampo(apellido);
 		verificarCampo(dni.toString());
@@ -37,7 +37,7 @@ public class Cliente {
 		this.tarjetas = tarjetas;
 	}
 	
-	public void agregarTarjeta(String tarjeta) {
+	public void agregarTarjeta(Tarjeta tarjeta) {
 		tarjetas.add(tarjeta);
 	}
 	
@@ -57,7 +57,7 @@ public class Cliente {
 		return email;
 	}
 
-	public List<String> getTarjetas() {
+	public List<Tarjeta> getTarjetas() {
 		return tarjetas;
 	}
 

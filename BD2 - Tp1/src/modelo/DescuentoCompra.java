@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class DescuentoCompra implements Descuento{
-	private String tarjeta;
+	private TipoTarjeta tarjeta;
 	private LocalDate fechaInicio;
 	private LocalDate fechaFin;
 	private float porcentaje;
@@ -16,7 +16,7 @@ public class DescuentoCompra implements Descuento{
 		
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
-		this.tarjeta = tarjeta;
+		this.tarjeta = TipoTarjeta.valueOf(tarjeta);
 		this.porcentaje = porcentaje;
 	}
 	
@@ -41,7 +41,7 @@ public class DescuentoCompra implements Descuento{
 	}
 	
 	public String getTarjeta() {
-		return tarjeta;
+		return tarjeta.toString();
 	}
 
 	private void verificarFecha(LocalDate fechaInicio, LocalDate fechaFin) {

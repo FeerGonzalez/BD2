@@ -42,12 +42,25 @@ public class Carrito {
 		return total;
 	}
 	
-	public float calcularTotal(String tarjeta) {
+	public float calcularTotal(Tarjeta tarjeta) {
 		float precio = calcularTotal();
 		
 		precio = verificarAplicarDescuentoCompra(precio, tarjeta);
 
 		return precio;
+	}
+	
+	public Venta realizarCompra(Tarjeta tarjeta) {
+		List<ProductoVendido> listaProductos = new ArrayList<>();
+		
+		for (Producto producto : listaDeProductos) {
+			listaProductos.add(new ProductoVendido(producto, verificarAplicarDescuentoProducto(producto)));
+		}
+		
+		Venta venta = new Venta(this.cliente, listaProductos, calcularTotal(tarjeta));
+		
+		
+		return venta;
 	}
 	
 	private float verificarAplicarDescuentoProducto(Producto producto) {
@@ -62,11 +75,11 @@ public class Carrito {
 		return precio;
 	}
 	
-	private float verificarAplicarDescuentoCompra(float precio, String tarjeta) {
+	private float verificarAplicarDescuentoCompra(float precio, Tarjeta tarjeta) {
 		float precioConDescuento = precio;
 		
 		for (DescuentoCompra descuento : listaDescuentosSobreCompra) {
-			if(descuento.getTarjeta() == tarjeta) {
+			if(descuento.getTarjeta() == tarjeta.getTipo()) {
 				precioConDescuento = descuento.aplicarDescuento(precio);
 			}
 		}

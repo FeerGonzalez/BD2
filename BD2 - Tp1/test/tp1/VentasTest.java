@@ -1,6 +1,5 @@
 package tp1;
 
-import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -12,6 +11,7 @@ import modelo.Cliente;
 import modelo.DescuentoCompra;
 import modelo.DescuentoProducto;
 import modelo.Producto;
+import modelo.Tarjeta;
 
 public class VentasTest {
 	@Test
@@ -19,10 +19,14 @@ public class VentasTest {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
 		Carrito carrito = new Carrito(cliente);
 		
+		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
+		
+		cliente.agregarTarjeta(tarjeta);
+		
 		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
 		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
 		
-		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(5), LocalDate.now().minusDays(2), "A", 8));
+		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(5), LocalDate.now().minusDays(2), "MemeCard", 8));
 		carrito.agregarDescuentoDeProducto(new DescuentoProducto(LocalDate.now().minusDays(5), LocalDate.now().minusDays(2), "Comarca", 5));
 		
 		
@@ -34,10 +38,14 @@ public class VentasTest {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
 		Carrito carrito = new Carrito(cliente);
 		
+		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
+		
+		cliente.agregarTarjeta(tarjeta);
+		
 		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
 		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
 		
-		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(5), LocalDate.now().minusDays(2), "A", 8));
+		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(5), LocalDate.now().minusDays(2), "MemeCard", 8));
 		carrito.agregarDescuentoDeProducto(new DescuentoProducto(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "Acme", 5));
 		
 		assertEquals(147.5, carrito.calcularTotal());
@@ -48,13 +56,17 @@ public class VentasTest {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
 		Carrito carrito = new Carrito(cliente);
 		
+		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
+		
+		cliente.agregarTarjeta(tarjeta);
+		
 		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
 		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
 		
-		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "A", 8));
+		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "MemeCard", 8));
 		carrito.agregarDescuentoDeProducto(new DescuentoProducto(LocalDate.now().minusDays(5), LocalDate.now().minusDays(2), "Acme", 5));
 		
-		assertEquals(138, carrito.calcularTotal("A"));
+		assertEquals(138, carrito.calcularTotal(cliente.getTarjetas().get(0)));
 	}
 	
 	@Test
@@ -62,18 +74,22 @@ public class VentasTest {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
 		Carrito carrito = new Carrito(cliente);
 		
+		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
+		
+		cliente.agregarTarjeta(tarjeta);
+		
 		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
 		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
 		
 		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "MemeCard", 8));
 		carrito.agregarDescuentoDeProducto(new DescuentoProducto(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "Comarca", 5));
 		
-		assertEquals(133.4, carrito.calcularTotal("MemeCard"));
+		assertEquals(133.39999389648438, carrito.calcularTotal(cliente.getTarjetas().get(0)));
 	}
 	
 	@Test
 	public void realizarPagoYGenerarVenta() {
-		
+		//Realizar 
 	}
 	
 	@Test
