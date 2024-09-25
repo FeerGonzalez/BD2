@@ -8,4 +8,14 @@ public class ProductoVendido {
 		this.producto = producto;
 		this.precio = precio;
 	}
+
+	private Producto getProducto() {
+		return producto;
+	}
+
+	private float getPrecio() {
+		return precio;
+	}
+	
+	
 }
