@@ -44,6 +44,26 @@ public class Producto {
 		return marca;
 	}
 	
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
 	private void verificarCampo(String campo) {
 		Objects.requireNonNull(campo);
 		if(campo.isBlank() || campo.isEmpty()) {
