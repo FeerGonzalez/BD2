@@ -1,11 +1,8 @@
 package tp1;
 
-import static org.junit.Assert.assertSame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -14,15 +11,13 @@ import modelo.Cliente;
 import modelo.DescuentoCompra;
 import modelo.DescuentoProducto;
 import modelo.Producto;
-import modelo.ProductoVendido;
 import modelo.Tarjeta;
-import modelo.Venta;
 
 public class VentasTest {
 	@Test
 	public void calcularMontoTotalConDescuentosCaducados() {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
-		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
+		Tarjeta tarjeta = new Tarjeta("1000000000000000", "MemeCard", 0, true);
 		
 		cliente.agregarTarjeta(tarjeta);
 		
@@ -41,7 +36,7 @@ public class VentasTest {
 	@Test
 	public void calcularMontoTotalConDescuentoProductoAcme() {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
-		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
+		Tarjeta tarjeta = new Tarjeta("1000000000000000", "MemeCard", 0, true);
 		
 		cliente.agregarTarjeta(tarjeta);
 		
@@ -59,7 +54,7 @@ public class VentasTest {
 	@Test
 	public void calcularMontoTotalConDescuentoTipoPago() {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
-		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
+		Tarjeta tarjeta = new Tarjeta("1000000000000000", "MemeCard", 0, true);
 		
 		cliente.agregarTarjeta(tarjeta);
 		
@@ -77,7 +72,7 @@ public class VentasTest {
 	@Test
 	public void calcularMontoTotal() {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
-		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
+		Tarjeta tarjeta = new Tarjeta("1000000000000000", "MemeCard", 0, true);
 		
 		cliente.agregarTarjeta(tarjeta);
 		
@@ -95,7 +90,7 @@ public class VentasTest {
 	@Test
 	public void realizarPagoYGenerarVenta() {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
-		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
+		Tarjeta tarjeta = new Tarjeta("1000000000000000", "MemeCard", 0, true);
 		
 		cliente.agregarTarjeta(tarjeta);
 		

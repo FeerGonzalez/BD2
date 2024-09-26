@@ -3,7 +3,7 @@ package modelo;
 import java.util.Objects;
 
 public class Tarjeta {
-	private int codigo;
+	private String codigo;
 	private	TipoTarjeta tipo;
 	private float saldo;
 	private boolean estado;
@@ -12,20 +12,20 @@ public class Tarjeta {
 		verificarCodigoValido(codigo);
 		verificarCampo(tipo);
 		
-		this.codigo = Integer.parseInt(codigo);
+		this.codigo = codigo;
 		this.tipo = TipoTarjeta.valueOf(tipo);
 	}
 	
 	public Tarjeta(String codigo, String tipo, float saldo, boolean estado) {
 		verificarCodigoValido(codigo);
 		
-		this.codigo = Integer.parseInt(codigo);
+		this.codigo = codigo;
 		this.tipo = TipoTarjeta.valueOf(tipo);
 		this.saldo = saldo;
 		this.estado = estado;
 	}
 
-	private int getCodigo() {
+	private String getCodigo() {
 		return codigo;
 	}
 
