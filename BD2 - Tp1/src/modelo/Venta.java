@@ -11,6 +11,8 @@ public class Venta {
 	private float montoTotal;
 	
 	public Venta(Cliente cliente, List<ProductoVendido> lista, float monto) {
+		verificarListaDeProductos(lista);
+		
 		this.fecha = LocalDate.now();
 		this.cliente = cliente;
 		this.listaProductos = lista;
@@ -36,7 +38,11 @@ public class Venta {
 				&& Float.floatToIntBits(montoTotal) == Float.floatToIntBits(other.montoTotal);
 	}
 	
-	
+	private void verificarListaDeProductos(List<ProductoVendido> lista) {
+		if(lista.size() < 1) {
+			throw new RuntimeException("La lista de productos debe tener al menos un producto");
+		}
+	}
 	
 	
 }
