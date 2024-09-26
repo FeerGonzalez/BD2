@@ -52,8 +52,8 @@ public class Producto {
 		this.descripcion = descripcion;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setCategoria(String categoria) {
+		this.categoria = Categoria.valueOf(categoria);
 	}
 
 	public void setMarca(String marca) {
