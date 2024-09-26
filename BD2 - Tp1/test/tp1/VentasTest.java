@@ -1,8 +1,11 @@
 package tp1;
 
+import static org.junit.Assert.assertSame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -11,17 +14,19 @@ import modelo.Cliente;
 import modelo.DescuentoCompra;
 import modelo.DescuentoProducto;
 import modelo.Producto;
+import modelo.ProductoVendido;
 import modelo.Tarjeta;
+import modelo.Venta;
 
 public class VentasTest {
 	@Test
 	public void calcularMontoTotalConDescuentosCaducados() {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
-		Carrito carrito = new Carrito(cliente);
-		
 		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
 		
 		cliente.agregarTarjeta(tarjeta);
+		
+		Carrito carrito = new Carrito(cliente);
 		
 		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
 		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
@@ -36,11 +41,11 @@ public class VentasTest {
 	@Test
 	public void calcularMontoTotalConDescuentoProductoAcme() {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
-		Carrito carrito = new Carrito(cliente);
-		
 		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
 		
 		cliente.agregarTarjeta(tarjeta);
+		
+		Carrito carrito = new Carrito(cliente);
 		
 		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
 		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
@@ -54,11 +59,11 @@ public class VentasTest {
 	@Test
 	public void calcularMontoTotalConDescuentoTipoPago() {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
-		Carrito carrito = new Carrito(cliente);
-		
 		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
 		
 		cliente.agregarTarjeta(tarjeta);
+		
+		Carrito carrito = new Carrito(cliente);
 		
 		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
 		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
@@ -72,11 +77,11 @@ public class VentasTest {
 	@Test
 	public void calcularMontoTotal() {
 		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
-		Carrito carrito = new Carrito(cliente);
-		
 		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
 		
 		cliente.agregarTarjeta(tarjeta);
+		
+		Carrito carrito = new Carrito(cliente);
 		
 		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
 		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
@@ -89,7 +94,25 @@ public class VentasTest {
 	
 	@Test
 	public void realizarPagoYGenerarVenta() {
-		//Realizar 
+		Cliente cliente = new Cliente("Fernando", "Gonzalez", "12345678", "fer@gmail.com");
+		Tarjeta tarjeta = new Tarjeta(1, "MemeCard", 0, true);
+		
+		cliente.agregarTarjeta(tarjeta);
+		
+		Carrito carrito = new Carrito(cliente);
+		
+		Producto producto1 = new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca");
+		Producto producto2 = new Producto(1, "Es un calzado", "Calzado", 50, "Acme");
+		
+		carrito.agregarProducto(producto1);
+		carrito.agregarProducto(producto2);
+		
+		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "MemeCard", 8));
+		carrito.agregarDescuentoDeProducto(new DescuentoProducto(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "Comarca", 5));
+		
+		carrito.realizarCompra(tarjeta);
+		
+		assertEquals(1, cliente.getVentas().size());
 	}
 	
 	@Test

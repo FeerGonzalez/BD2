@@ -2,6 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class Venta {
 	private LocalDate fecha;
@@ -15,4 +16,27 @@ public class Venta {
 		this.listaProductos = lista;
 		this.montoTotal = monto;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cliente, fecha, listaProductos, montoTotal);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Venta other = (Venta) obj;
+		return Objects.equals(cliente, other.cliente) && Objects.equals(fecha, other.fecha)
+				&& Objects.equals(listaProductos, other.listaProductos)
+				&& Float.floatToIntBits(montoTotal) == Float.floatToIntBits(other.montoTotal);
+	}
+	
+	
+	
+	
 }

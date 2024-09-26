@@ -50,7 +50,7 @@ public class Carrito {
 		return precio;
 	}
 	
-	public Venta realizarCompra(Tarjeta tarjeta) {
+	public void realizarCompra(Tarjeta tarjeta) {
 		List<ProductoVendido> listaProductos = new ArrayList<>();
 		
 		for (Producto producto : listaDeProductos) {
@@ -59,15 +59,14 @@ public class Carrito {
 		
 		Venta venta = new Venta(this.cliente, listaProductos, calcularTotal(tarjeta));
 		
-		
-		return venta;
+		cliente.agregarVenta(venta);
 	}
 	
 	private float verificarAplicarDescuentoProducto(Producto producto) {
 		float precio = producto.getPrecio();
 		
 		for (DescuentoProducto descuento : listaDescuentosSobreProductos) {
-			if(descuento.getMarca() == producto.getMarca()) {
+			if(descuento.verificarMarcaProductoValida(producto)) {
 				precio = descuento.aplicarDescuento(producto.getPrecio());
 			}
 		}

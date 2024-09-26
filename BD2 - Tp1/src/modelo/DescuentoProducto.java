@@ -39,6 +39,14 @@ public class DescuentoProducto implements Descuento{
 		LocalDate hoy = LocalDate.now();
         return !hoy.isBefore(fechaInicio) && !hoy.isAfter(fechaFin);
 	}
+	
+	public boolean verificarMarcaProductoValida(Producto producto) {
+		if(producto.getMarca() == this.marca) {
+			return true;
+		}
+		
+		return false;
+	}
 
 	public String getMarca() {
 		return marca;
