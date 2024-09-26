@@ -1,23 +1,15 @@
 package modelo;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
-public class DescuentoProducto implements Descuento{
-	private LocalDate fechaInicio;
-	private LocalDate fechaFin;
+public class DescuentoProducto extends Descuento{
 	private String marca;
-	private float porcentaje;
 
 	public DescuentoProducto(LocalDate fechaInicio, LocalDate fechaFin, String marca, float porcentaje) {
-		verificarFecha(fechaInicio, fechaFin);
+		super(fechaInicio, fechaFin, porcentaje);
 		verificarCampo(marca);
-		verificarCampo(((Float) porcentaje).toString());
 		
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
 		this.marca = marca;
-		this.porcentaje = porcentaje;
 	}
 
 	
@@ -33,12 +25,6 @@ public class DescuentoProducto implements Descuento{
 		
 		return precioConDescuento;
 	}
-
-	@Override
-	public boolean estaActiva() {
-		LocalDate hoy = LocalDate.now();
-        return !hoy.isBefore(fechaInicio) && !hoy.isAfter(fechaFin);
-	}
 	
 	public boolean verificarMarcaProductoValida(Producto producto) {
 		if(producto.getMarca() == this.marca) {
@@ -51,6 +37,8 @@ public class DescuentoProducto implements Descuento{
 	public String getMarca() {
 		return marca;
 	}
+	
+	/*
 
 	private void verificarFecha(LocalDate fechaInicio, LocalDate fechaFin) {
 		Objects.requireNonNull(fechaInicio);
@@ -67,6 +55,6 @@ public class DescuentoProducto implements Descuento{
 		if(campo.isBlank() || campo.isEmpty()) {
 			throw new RuntimeException("El campo no puede estar vacio");
 		}
-	}
+	}*/
 
 }
