@@ -10,14 +10,14 @@ public class Producto {
 	private float precio;
 	
 	
-	public Producto(Integer id, String descripcion, String categoria, float precio, String marca){
+	public Producto(String id, String descripcion, String categoria, float precio, String marca){
 		verificarCampo(id.toString());
 		verificarCampo(descripcion);
 		verificarCampo(categoria);
 		verificarPrecioValido(precio);
 		verificarCampo(marca);
 		
-		this.id = id;
+		this.id = Integer.parseInt(id);
 		this.descripcion = descripcion;
 		this.categoria = Categoria.valueOf(categoria);
 		this.precio = precio;

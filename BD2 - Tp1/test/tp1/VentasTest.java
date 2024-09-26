@@ -23,8 +23,8 @@ public class VentasTest {
 		
 		Carrito carrito = new Carrito(cliente);
 		
-		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
-		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
+		carrito.agregarProducto(new Producto("1", "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
+		carrito.agregarProducto(new Producto("1", "Es un calzado", "Calzado", 50, "Acme"));
 		
 		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(5), LocalDate.now().minusDays(2), "MemeCard", 8));
 		carrito.agregarDescuentoDeProducto(new DescuentoProducto(LocalDate.now().minusDays(5), LocalDate.now().minusDays(2), "Comarca", 5));
@@ -42,8 +42,8 @@ public class VentasTest {
 		
 		Carrito carrito = new Carrito(cliente);
 		
-		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
-		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
+		carrito.agregarProducto(new Producto("1", "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
+		carrito.agregarProducto(new Producto("1", "Es un calzado", "Calzado", 50, "Acme"));
 		
 		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(5), LocalDate.now().minusDays(2), "MemeCard", 8));
 		carrito.agregarDescuentoDeProducto(new DescuentoProducto(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "Acme", 5));
@@ -60,8 +60,8 @@ public class VentasTest {
 		
 		Carrito carrito = new Carrito(cliente);
 		
-		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
-		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
+		carrito.agregarProducto(new Producto("1", "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
+		carrito.agregarProducto(new Producto("1", "Es un calzado", "Calzado", 50, "Acme"));
 		
 		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "MemeCard", 8));
 		carrito.agregarDescuentoDeProducto(new DescuentoProducto(LocalDate.now().minusDays(5), LocalDate.now().minusDays(2), "Acme", 5));
@@ -78,8 +78,8 @@ public class VentasTest {
 		
 		Carrito carrito = new Carrito(cliente);
 		
-		carrito.agregarProducto(new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
-		carrito.agregarProducto(new Producto(1, "Es un calzado", "Calzado", 50, "Acme"));
+		carrito.agregarProducto(new Producto("1", "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca"));
+		carrito.agregarProducto(new Producto("1", "Es un calzado", "Calzado", 50, "Acme"));
 		
 		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "MemeCard", 8));
 		carrito.agregarDescuentoDeProducto(new DescuentoProducto(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "Comarca", 5));
@@ -96,8 +96,8 @@ public class VentasTest {
 		
 		Carrito carrito = new Carrito(cliente);
 		
-		Producto producto1 = new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca");
-		Producto producto2 = new Producto(1, "Es un calzado", "Calzado", 50, "Acme");
+		Producto producto1 = new Producto("1", "Es una remera deportiva", "Ropa_Deportiva", 100, "Comarca");
+		Producto producto2 = new Producto("1", "Es un calzado", "Calzado", 50, "Acme");
 		
 		carrito.agregarProducto(producto1);
 		carrito.agregarProducto(producto2);
@@ -115,7 +115,7 @@ public class VentasTest {
 		String mensajeDeError = "";
 		
 		try {
-			new Producto(1, "Es una remera deportiva", "", 18, "Comarca");
+			new Producto("1", "Es una remera deportiva", "", 18, "Comarca");
 		}catch (Exception e) {
 			mensajeDeError = e.getMessage();
 		}
@@ -133,7 +133,7 @@ public class VentasTest {
 		String mensajeDeError = "";
 		
 		try {
-			new Producto(1, "", "Ropa_Deportiva", 18, "Comarca");
+			new Producto("1", "", "Ropa_Deportiva", 18, "Comarca");
 		}catch (Exception e) {
 			mensajeDeError = e.getMessage();
 		}
@@ -146,7 +146,7 @@ public class VentasTest {
 		String mensajeDeError = "";
 		
 		try {
-			new Producto(1, "Es una remera deportiva", "Ropa_Deportiva", -1, "Comarca");
+			new Producto("1", "Es una remera deportiva", "Ropa_Deportiva", -1, "Comarca");
 		}catch (Exception e) {
 			mensajeDeError = e.getMessage();
 		}
