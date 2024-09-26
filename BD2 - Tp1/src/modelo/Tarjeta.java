@@ -1,20 +1,32 @@
 package modelo;
 
+import java.util.Objects;
+
 public class Tarjeta {
-	private int id;
+	private int codigo;
 	private	TipoTarjeta tipo;
 	private float saldo;
 	private boolean estado;
 	
-	public Tarjeta(int id, String tipo, float saldo, boolean estado) {
-		this.id = id;
+	public Tarjeta (String codigo, String tipo) {
+		verificarCodigoValido(codigo);
+		verificarCampo(tipo);
+		
+		this.codigo = Integer.parseInt(codigo);
+		this.tipo = TipoTarjeta.valueOf(tipo);
+	}
+	
+	public Tarjeta(String codigo, String tipo, float saldo, boolean estado) {
+		verificarCodigoValido(codigo);
+		
+		this.codigo = Integer.parseInt(codigo);
 		this.tipo = TipoTarjeta.valueOf(tipo);
 		this.saldo = saldo;
 		this.estado = estado;
 	}
 
-	private int getId() {
-		return id;
+	private int getCodigo() {
+		return codigo;
 	}
 
 	public String getTipo() {
@@ -27,6 +39,19 @@ public class Tarjeta {
 
 	private boolean isEstado() {
 		return estado;
+	}
+	
+	private void verificarCodigoValido(String codigo) {
+		if(codigo.length() != 16) {
+			throw new RuntimeException("El codigo de la tarjeta no puede ser menor o mayor a 16 digitos");
+		}
+	}
+	
+	private void verificarCampo(String campo) {
+		Objects.requireNonNull(campo);
+		if(campo.isBlank() || campo.isEmpty()) {
+			throw new RuntimeException("El campo no puede estar vacio");
+		}
 	}
 	
 	
