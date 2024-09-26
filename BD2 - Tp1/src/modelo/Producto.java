@@ -44,8 +44,8 @@ public class Producto {
 		return marca;
 	}
 	
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCodigo(String codigo) {
+		this.codigo = Integer.parseInt(codigo);
 	}
 
 	public void setDescripcion(String descripcion) {
