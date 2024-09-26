@@ -3,29 +3,29 @@ package modelo;
 import java.util.Objects;
 
 public class Producto {
-	private int id;
+	private int codigo;
 	private String descripcion;
 	private Categoria categoria;
 	private String marca;
 	private float precio;
 	
 	
-	public Producto(String id, String descripcion, String categoria, float precio, String marca){
-		verificarCampo(id.toString());
+	public Producto(String codigo, String descripcion, String categoria, float precio, String marca){
+		verificarCampo(codigo.toString());
 		verificarCampo(descripcion);
 		verificarCampo(categoria);
 		verificarPrecioValido(precio);
 		verificarCampo(marca);
 		
-		this.id = Integer.parseInt(id);
+		this.codigo = Integer.parseInt(codigo);
 		this.descripcion = descripcion;
 		this.categoria = Categoria.valueOf(categoria);
 		this.precio = precio;
 		this.marca = marca;
 	}
 
-	public int getId() {
-		return id;
+	public int getCodigo() {
+		return codigo;
 	}
 
 	public String getDescripcion() {
