@@ -37,24 +37,5 @@ public class DescuentoProducto extends Descuento{
 	public String getMarca() {
 		return marca;
 	}
-	
-	/*
-
-	private void verificarFecha(LocalDate fechaInicio, LocalDate fechaFin) {
-		Objects.requireNonNull(fechaInicio);
-		Objects.requireNonNull(fechaFin);
-		
-		if(fechaInicio.isAfter(fechaFin)) {
-			throw new RuntimeException("La fecha de inicio no puede ser despues que la de fin");
-		}
-		
-	}
-	
-	private void verificarCampo(String campo) {
-		Objects.requireNonNull(campo);
-		if(campo.isBlank() || campo.isEmpty()) {
-			throw new RuntimeException("El campo no puede estar vacio");
-		}
-	}*/
 
 }

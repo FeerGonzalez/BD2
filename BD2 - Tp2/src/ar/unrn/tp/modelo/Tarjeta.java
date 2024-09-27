@@ -10,6 +10,7 @@ import javax.persistence.Id;
 public class Tarjeta {
 	@Id
 	@GeneratedValue
+	private Long Id;
 	private String codigo;
 	private	TipoTarjeta tipo;
 	private float saldo;
@@ -21,6 +22,16 @@ public class Tarjeta {
 		
 		this.codigo = codigo;
 		this.tipo = TipoTarjeta.valueOf(tipo);
+		this.saldo = 0;
+	}
+	
+	public Tarjeta (String codigo, String tipo, float saldo) {
+		verificarCodigoValido(codigo);
+		verificarCampo(tipo);
+		
+		this.codigo = codigo;
+		this.tipo = TipoTarjeta.valueOf(tipo);
+		this.saldo = saldo;
 	}
 	
 	public Tarjeta(String codigo, String tipo, float saldo, boolean estado) {
@@ -30,6 +41,10 @@ public class Tarjeta {
 		this.tipo = TipoTarjeta.valueOf(tipo);
 		this.saldo = saldo;
 		this.estado = estado;
+	}
+	
+	public Long getId() {
+		return Id;
 	}
 
 	private String getCodigo() {

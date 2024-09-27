@@ -11,4 +11,6 @@ public interface ProductoService {
 	void modificarProducto(Long idProducto, String codigo, String descripcion, float precio, String IdCategoría, String marca);
 	 //Devuelve todos los productos
 	 List<Producto> listarProductos();
+	 
+	 Producto buscarProducto(long idProducto);
 }

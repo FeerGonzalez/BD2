@@ -3,7 +3,15 @@ package ar.unrn.tp.modelo;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public abstract class Descuento {
+	@Id
+    @GeneratedValue
+    private Long id;
 	protected LocalDate fechaInicio;
 	protected LocalDate fechaFin;
 	protected float porcentaje;

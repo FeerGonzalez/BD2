@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,12 +18,11 @@ public class Cliente {
     private Long id;
 	private String nombre;
 	private String apellido;
+	@Column(unique = true)
 	private int dni;
 	private String email;
 	@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Tarjeta> tarjetas;
-	@OneToMany(cascade = CascadeType.PERSIST)
-	private List<Venta> listaDeVentas; //Cambiar esto en el tp1 y tp2, sacarlo y revisar el test del tp 1
 	
 	public Cliente(String nombre, String apellido, String dni, String email) {
 		verificarCampo(nombre);
@@ -35,7 +35,6 @@ public class Cliente {
 		this.dni = Integer.parseInt(dni);
 		this.email = email;
 		this.tarjetas = new ArrayList<>();
-		this.listaDeVentas = new ArrayList<>();
 	}
 	
 	public Cliente(String nombre, String apellido, Integer dni, String email, List<Tarjeta> tarjetas) {
@@ -49,15 +48,14 @@ public class Cliente {
 		this.dni = dni;
 		this.email = email;
 		this.tarjetas = tarjetas;
-		this.listaDeVentas = new ArrayList<>();
 	}
 	
 	public void agregarTarjeta(Tarjeta tarjeta) {
 		tarjetas.add(tarjeta);
 	}
 	
-	public void agregarVenta(Venta venta) {
-		listaDeVentas.add(venta);
+	public Long getId() {
+		return id;
 	}
 	
 	private String getNombre() {
@@ -79,10 +77,6 @@ public class Cliente {
 	public List<Tarjeta> getTarjetas() {
 		return tarjetas;
 	}
-	
-	public List<Venta> getVentas() {
-		return listaDeVentas;
-	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -102,10 +96,6 @@ public class Cliente {
 
 	public void setTarjetas(List<Tarjeta> tarjetas) {
 		this.tarjetas = tarjetas;
-	}
-
-	public void setListaDeVentas(List<Venta> listaDeVentas) {
-		this.listaDeVentas = listaDeVentas;
 	}
 
 	@Override

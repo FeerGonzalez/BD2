@@ -61,5 +61,10 @@ public class JPAProductoService implements ProductoService {
 	public List<Producto> listarProductos() {
 		return em.createQuery("SELECT p FROM Producto p", Producto.class).getResultList();
 	}
+	
+	@Override
+    public Producto buscarProducto(long idProducto) {
+       return em.createQuery("SELECT p FROM Producto p WHERE p.id = :id", Producto.class).setParameter("id", idProducto).getSingleResult();
+    }
 
 }

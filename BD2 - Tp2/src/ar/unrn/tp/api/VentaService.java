@@ -15,6 +15,6 @@ public interface VentaService {
 	 // validar que no llegue una lista vacía y la tarjeta exista
 	float calcularMonto(List<Long> productos, Long idTarjeta);
 	 //Devuelve todas las ventas realizadas
-	List<Venta> ventas();
+	List<Venta> listarVentas();
 }
 

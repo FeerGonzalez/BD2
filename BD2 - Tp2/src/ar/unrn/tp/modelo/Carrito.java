@@ -9,6 +9,12 @@ public class Carrito {
 	private List<DescuentoCompra> listaDescuentosSobreCompra;
 	private List<DescuentoProducto> listaDescuentosSobreProductos;
 	
+	public Carrito() {
+		this.listaDeProductos = new ArrayList<>();
+		this.listaDescuentosSobreCompra = new ArrayList<>();
+		this.listaDescuentosSobreProductos = new ArrayList<>();
+	}
+	
 	public Carrito(Cliente cliente) {
 		this.listaDeProductos = new ArrayList<>();
 		this.cliente = cliente;
@@ -58,8 +64,6 @@ public class Carrito {
 		}
 		
 		Venta venta = new Venta(this.cliente, listaProductos, calcularTotal(tarjeta));
-		
-		cliente.agregarVenta(venta);
 		
 		return venta;
 	}

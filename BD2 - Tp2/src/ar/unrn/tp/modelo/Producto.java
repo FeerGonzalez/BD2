@@ -2,7 +2,17 @@ package ar.unrn.tp.modelo;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Producto {
+	@Id
+    @GeneratedValue
+    private Long id;
+	@Column(unique = true)
 	private int codigo;
 	private String descripcion;
 	private Categoria categoria;
@@ -22,6 +32,10 @@ public class Producto {
 		this.categoria = Categoria.valueOf(categoria);
 		this.precio = precio;
 		this.marca = marca;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 
 	public int getCodigo() {
