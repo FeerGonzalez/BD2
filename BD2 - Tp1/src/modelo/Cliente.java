@@ -10,7 +10,6 @@ public class Cliente {
 	private int dni;
 	private String email;
 	private List<Tarjeta> tarjetas;
-	private List<Venta> listaDeVentas;
 	
 	public Cliente(String nombre, String apellido, String dni, String email) {
 		verificarCampo(nombre);
@@ -23,7 +22,6 @@ public class Cliente {
 		this.dni = Integer.parseInt(dni);
 		this.email = email;
 		this.tarjetas = new ArrayList<>();
-		this.listaDeVentas = new ArrayList<>();
 	}
 	
 	public Cliente(String nombre, String apellido, Integer dni, String email, List<Tarjeta> tarjetas) {
@@ -37,15 +35,10 @@ public class Cliente {
 		this.dni = dni;
 		this.email = email;
 		this.tarjetas = tarjetas;
-		this.listaDeVentas = new ArrayList<>();
 	}
 	
 	public void agregarTarjeta(Tarjeta tarjeta) {
 		tarjetas.add(tarjeta);
-	}
-	
-	public void agregarVenta(Venta venta) {
-		listaDeVentas.add(venta);
 	}
 	
 	private String getNombre() {
@@ -66,10 +59,6 @@ public class Cliente {
 
 	public List<Tarjeta> getTarjetas() {
 		return tarjetas;
-	}
-	
-	public List<Venta> getVentas() {
-		return listaDeVentas;
 	}
 
 	@Override

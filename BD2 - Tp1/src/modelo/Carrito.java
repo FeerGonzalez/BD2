@@ -50,7 +50,7 @@ public class Carrito {
 		return precio;
 	}
 	
-	public void realizarCompra(Tarjeta tarjeta) {
+	public Venta realizarCompra(Tarjeta tarjeta) {
 		List<ProductoVendido> listaProductos = new ArrayList<>();
 		
 		for (Producto producto : listaDeProductos) {
@@ -59,7 +59,7 @@ public class Carrito {
 		
 		Venta venta = new Venta(this.cliente, listaProductos, calcularTotal(tarjeta));
 		
-		cliente.agregarVenta(venta);
+		return venta;
 	}
 	
 	private float verificarAplicarDescuentoProducto(Producto producto) {

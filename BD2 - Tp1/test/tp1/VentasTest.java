@@ -1,5 +1,6 @@
 package tp1;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import modelo.DescuentoCompra;
 import modelo.DescuentoProducto;
 import modelo.Producto;
 import modelo.Tarjeta;
+import modelo.Venta;
 
 public class VentasTest {
 	@Test
@@ -105,9 +107,11 @@ public class VentasTest {
 		carrito.agregarDescuentoDeCompra(new DescuentoCompra(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "MemeCard", 8));
 		carrito.agregarDescuentoDeProducto(new DescuentoProducto(LocalDate.now().minusDays(1), LocalDate.now().plusDays(2), "Comarca", 5));
 		
-		carrito.realizarCompra(tarjeta);
-		
-		assertEquals(1, cliente.getVentas().size());
+		Venta venta = carrito.realizarCompra(tarjeta);
+		System.out.println(venta.getMontoTotal());
+		assertNotNull(venta);
+		assertEquals(cliente, venta.getCliente());
+		assertEquals(133.39999389648438,venta.getMontoTotal());
 	}
 	
 	@Test

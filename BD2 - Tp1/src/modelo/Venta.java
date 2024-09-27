@@ -19,6 +19,22 @@ public class Venta {
 		this.montoTotal = monto;
 	}
 
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public List<ProductoVendido> getListaProductos() {
+		return listaProductos;
+	}
+
+	public float getMontoTotal() {
+		return montoTotal;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(cliente, fecha, listaProductos, montoTotal);
