@@ -47,7 +47,7 @@ public class Tarjeta {
 		return Id;
 	}
 
-	private String getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
@@ -55,11 +55,11 @@ public class Tarjeta {
 		return tipo.toString();
 	}
 
-	private float getSaldo() {
+	public float getSaldo() {
 		return saldo;
 	}
 
-	private boolean isEstado() {
+	public boolean isEstado() {
 		return estado;
 	}
 	

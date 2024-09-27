@@ -58,19 +58,19 @@ public class Cliente {
 		return id;
 	}
 	
-	private String getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 
-	private String getApellido() {
+	public String getApellido() {
 		return apellido;
 	}
 
-	private int getDni() {
+	public int getDni() {
 		return dni;
 	}
 
-	private String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
