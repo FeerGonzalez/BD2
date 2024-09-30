@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
@@ -18,6 +20,7 @@ import ar.unrn.tp.modelo.Producto;
 import ar.unrn.tp.modelo.Tarjeta;
 import ar.unrn.tp.modelo.Venta;
 
+@Service
 public class JPAVentaService implements VentaService {
 	private final EntityManager em;
     private final ClienteService clienteService;

@@ -2,6 +2,9 @@ package ar.unrn.tp.modelo;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.DiscriminatorValue;
+
+@DiscriminatorValue("Producto")
 public class DescuentoProducto extends Descuento{
 	private String marca;
 

@@ -28,7 +28,7 @@ public class Main {
         ProductoService productoService = new JPAProductoService(em);
         VentaService ventaService = new JPAVentaService(em, clienteService, productoService);
  
-        Cliente cliente = new Cliente("Pedro", "Gutierrez", "12345678", "pedro@example.com");
+        Cliente cliente = new Cliente("Pedro", "Gutierrez", 12345678, "pedro@example.com");
         Tarjeta tarjeta = new Tarjeta("234 - 5678 - 9012 - 3456", "Visa", 50);
         
         cliente.agregarTarjeta(tarjeta);

@@ -2,12 +2,15 @@ package ar.unrn.tp.jpa.servicios;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 import ar.unrn.tp.api.ProductoService;
 import ar.unrn.tp.modelo.Producto;
 
+@Service
 public class JPAProductoService implements ProductoService {
 	private final EntityManager em;
 	

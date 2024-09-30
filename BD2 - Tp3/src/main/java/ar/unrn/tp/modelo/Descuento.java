@@ -3,10 +3,14 @@ package ar.unrn.tp.modelo;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Data;
 
+@Data
+@DiscriminatorColumn(name = "tipo_descuento")
 @Entity
 public abstract class Descuento {
 	@Id

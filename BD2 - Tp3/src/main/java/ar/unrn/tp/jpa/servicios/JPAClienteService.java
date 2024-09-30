@@ -2,6 +2,8 @@ package ar.unrn.tp.jpa.servicios;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
@@ -9,6 +11,7 @@ import ar.unrn.tp.api.ClienteService;
 import ar.unrn.tp.modelo.Cliente;
 import ar.unrn.tp.modelo.Tarjeta;
 
+@Service
 public class JPAClienteService implements ClienteService {
 	private final EntityManager em;
 
@@ -22,7 +25,7 @@ public class JPAClienteService implements ClienteService {
 		EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            Cliente nuevoCliente = new Cliente(nombre, apellido, dni, email);
+            Cliente nuevoCliente = new Cliente(nombre, apellido, Integer.parseInt(dni), email);
             em.persist(nuevoCliente);
             tx.commit();
         } catch (Exception e) {
@@ -43,7 +46,7 @@ public class JPAClienteService implements ClienteService {
             Cliente cliente = em.getReference(Cliente.class, idCliente);
             cliente.setNombre(nombre);
             cliente.setApellido(apellido);
-            cliente.setDni(dni);
+            cliente.setDni(Integer.parseInt(dni));
             cliente.setEmail(email);
             tx.commit();
         } catch (Exception e) {

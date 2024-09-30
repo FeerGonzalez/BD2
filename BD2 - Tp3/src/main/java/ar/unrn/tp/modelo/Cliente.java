@@ -10,8 +10,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
+@Table(name = "cliente")
 public class Cliente {
 	@Id
     @GeneratedValue
@@ -19,12 +23,12 @@ public class Cliente {
 	private String nombre;
 	private String apellido;
 	@Column(unique = true)
-	private int dni;
+	private Integer dni;
 	private String email;
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Tarjeta> tarjetas;
 	
-	public Cliente(String nombre, String apellido, String dni, String email) {
+	public Cliente(String nombre, String apellido, Integer dni, String email) {
 		verificarCampo(nombre);
 		verificarCampo(apellido);
 		verificarCampo(dni.toString());
@@ -32,7 +36,7 @@ public class Cliente {
 		
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.dni = Integer.parseInt(dni);
+		this.dni = dni;
 		this.email = email;
 		this.tarjetas = new ArrayList<>();
 	}
@@ -86,8 +90,8 @@ public class Cliente {
 		this.apellido = apellido;
 	}
 
-	public void setDni(String dni) {
-		this.dni = Integer.parseInt(dni);
+	public void setDni(int dni) {
+		this.dni = dni;
 	}
 
 	public void setEmail(String email) {
