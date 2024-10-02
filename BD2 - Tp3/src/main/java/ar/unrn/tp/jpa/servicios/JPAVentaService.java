@@ -49,8 +49,8 @@ public class JPAVentaService implements VentaService {
             Carrito carrito = new Carrito(cliente);
             listaProductos.forEach(carrito::agregarProducto);
 
-            List<DescuentoCompra> descuentosCompra = em.createQuery("SELECT d FROM Descuento d", DescuentoCompra.class).getResultList();
-            List<DescuentoProducto> descuentosProductos = em.createQuery("SELECT d FROM Descuento d", DescuentoProducto.class).getResultList();
+            List<DescuentoCompra> descuentosCompra = em.createQuery("SELECT d FROM Descuento d WHERE tipo_descuento = Compra", DescuentoCompra.class).getResultList();
+            List<DescuentoProducto> descuentosProductos = em.createQuery("SELECT d FROM Descuento d WHERE tipo_descuento = Producto", DescuentoProducto.class).getResultList();
             
             for (DescuentoProducto descuentoProducto : descuentosProductos) {
 				carrito.agregarDescuentoDeProducto(descuentoProducto);

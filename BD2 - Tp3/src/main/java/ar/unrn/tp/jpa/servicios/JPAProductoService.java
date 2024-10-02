@@ -1,5 +1,6 @@
 package ar.unrn.tp.jpa.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 import ar.unrn.tp.api.ProductoService;
+import ar.unrn.tp.dto.ProductoDTO;
 import ar.unrn.tp.modelo.Producto;
 
 @Service
@@ -59,15 +61,35 @@ public class JPAProductoService implements ProductoService {
         }
 		
 	}
-
+	
 	@Override
 	public List<Producto> listarProductos() {
 		return em.createQuery("SELECT p FROM Producto p", Producto.class).getResultList();
 	}
+
+	@Override
+	public Producto buscarProducto(long idProducto) {
+		return em.createQuery("SELECT p FROM Producto p WHERE p.id = :id", Producto.class).setParameter("id", idProducto).getSingleResult();
+	}
 	
 	@Override
-    public Producto buscarProducto(long idProducto) {
-       return em.createQuery("SELECT p FROM Producto p WHERE p.id = :id", Producto.class).setParameter("id", idProducto).getSingleResult();
+	public List<ProductoDTO> listarProductosDTO() {
+		List<Producto> listaProductos = listarProductos();
+		List<ProductoDTO> listaProductosDTO = new ArrayList<>();
+		for (Producto producto : listaProductos) {
+			listaProductosDTO.add(new ProductoDTO(producto.getId(), producto.getCodigo(), producto.getDescripcion(),
+    				   producto.getCategoria(), producto.getMarca(), producto.getPrecio()));
+		}
+		
+		return listaProductosDTO;
+	}
+	
+	@Override
+    public ProductoDTO buscarProductoDTO(long idProducto) {
+       Producto producto = buscarProducto(idProducto);
+       ProductoDTO productoDTO = new ProductoDTO(producto.getId(), producto.getCodigo(), producto.getDescripcion(),
+    				   producto.getCategoria(), producto.getMarca(), producto.getPrecio());
+       return productoDTO;
     }
 
 }

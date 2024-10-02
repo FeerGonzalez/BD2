@@ -1,5 +1,6 @@
 package ar.unrn.tp.jpa.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 import ar.unrn.tp.api.ClienteService;
+import ar.unrn.tp.dto.TarjetaDTO;
 import ar.unrn.tp.modelo.Cliente;
 import ar.unrn.tp.modelo.Tarjeta;
 
@@ -97,5 +99,24 @@ public class JPAClienteService implements ClienteService {
     public Tarjeta buscarTarjetaCliente(Long idTarjeta) {
         return em.getReference(Tarjeta.class, idTarjeta);
     }
+
+
+	@Override
+	public TarjetaDTO buscarTarjetaClienteDTO(Long idTarjeta) {
+		Tarjeta tarjeta = buscarTarjetaCliente(idTarjeta);
+		TarjetaDTO tarjetaDTO = new TarjetaDTO(tarjeta.getId(), tarjeta.getCodigo(), tarjeta.getTipo(), tarjeta.getSaldo(), tarjeta.isEstado());
+		return tarjetaDTO;
+	}
+	
+	@Override
+	public List<TarjetaDTO> listarTarjetasDTO(Long idCliente) {
+		 Cliente cliente = em.getReference(Cliente.class, idCliente);
+		 List<TarjetaDTO> listaDeTarjetasDTO = new ArrayList<>();
+	      for (Tarjeta tarjeta : cliente.getTarjetas()) {
+			listaDeTarjetasDTO.add(new TarjetaDTO(tarjeta.getId(), tarjeta.getCodigo(), tarjeta.getTipo(), tarjeta.getSaldo(), tarjeta.isEstado()));
+	      };
+	      
+	      return listaDeTarjetasDTO;
+	}
 
 }

@@ -2,6 +2,7 @@ package ar.unrn.tp.api;
 
 import java.util.List;
 
+import ar.unrn.tp.dto.ProductoDTO;
 import ar.unrn.tp.modelo.Producto;
 
 public interface ProductoService {
@@ -10,7 +11,11 @@ public interface ProductoService {
 	//validar que sea un producto existente
 	void modificarProducto(Long idProducto, String codigo, String descripcion, float precio, String IdCategoria, String marca);
 	 //Devuelve todos los productos
-	 List<Producto> listarProductos();
+	Producto buscarProducto(long idProducto);
+	
+	List<Producto> listarProductos();
+	
+	List<ProductoDTO> listarProductosDTO();
 	 
-	 Producto buscarProducto(long idProducto);
+	ProductoDTO buscarProductoDTO(long idProducto);
 }

@@ -3,7 +3,10 @@ package ar.unrn.tp.modelo;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -13,9 +16,10 @@ import lombok.Data;
 @Table(name = "tarjeta")
 public class Tarjeta {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	private String codigo;
+	@Enumerated(EnumType.STRING)
 	private	TipoTarjeta tipo;
 	private float saldo;
 	private boolean estado;
