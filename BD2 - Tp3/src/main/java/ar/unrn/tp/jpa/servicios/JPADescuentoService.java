@@ -10,6 +10,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 import ar.unrn.tp.api.DescuentoService;
+import ar.unrn.tp.dto.DescuentoDTO;
 import ar.unrn.tp.modelo.Descuento;
 import ar.unrn.tp.modelo.DescuentoCompra;
 import ar.unrn.tp.modelo.DescuentoProducto;
@@ -72,6 +73,18 @@ public class JPADescuentoService implements DescuentoService {
 		}
         
         return listaDeDescuentosActivos;
+	}
+
+	@Override
+	public List<DescuentoDTO> listarDescuentosActivosDTO() {
+		List<Descuento> listaDeDescuentosActivos = listarDescuentosActivos();
+		List<DescuentoDTO> listaDeDescuentosActivosDTO = new ArrayList<>();
+		
+		for (Descuento descuento : listaDeDescuentosActivos) {
+			listaDeDescuentosActivosDTO.add(new DescuentoDTO(descuento.getId(), descuento.getFechaInicio(), descuento.getFechaFin(), descuento.getPorcentaje(), descuento.toString()));
+		}
+		
+		return listaDeDescuentosActivosDTO;
 	}
 
 }

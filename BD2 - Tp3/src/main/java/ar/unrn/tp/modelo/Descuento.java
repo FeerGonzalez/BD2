@@ -35,21 +35,23 @@ public abstract class Descuento {
 		LocalDate hoy = LocalDate.now();
         return !hoy.isBefore(fechaInicio) && !hoy.isAfter(fechaFin);
 	}
+	
+	public Long getId() {
+		return id;
+	}
 
-	protected LocalDate getFechaInicio() {
+	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
 
-	protected LocalDate getFechaFin() {
+	public LocalDate getFechaFin() {
 		return fechaFin;
 	}
 
-	protected float getPorcentaje() {
+	public float getPorcentaje() {
 		return porcentaje;
 	}
 	
-	
-
 	protected void verificarFecha(LocalDate fechaInicio, LocalDate fechaFin) {
 		Objects.requireNonNull(fechaInicio);
 		Objects.requireNonNull(fechaFin);

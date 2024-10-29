@@ -32,5 +32,10 @@ public class DescuentoCompra extends Descuento{
 	public String getTarjeta() {
 		return tarjeta.toString();
 	}
+	
+	@Override
+	public String toString() {
+		return "Es un descuento para la tarjeta: " + tarjeta;
+	}
 
 }

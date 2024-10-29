@@ -41,4 +41,12 @@ public class DescuentoProducto extends Descuento{
 		return marca;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Es un descuento para la marca: " + marca;
+	}
+	
+	
+
 }

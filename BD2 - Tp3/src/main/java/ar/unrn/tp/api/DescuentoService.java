@@ -3,6 +3,7 @@ package ar.unrn.tp.api;
 import java.time.LocalDate;
 import java.util.List;
 
+import ar.unrn.tp.dto.DescuentoDTO;
 import ar.unrn.tp.modelo.Descuento;
 
 public interface DescuentoService {
@@ -14,5 +15,7 @@ public interface DescuentoService {
 	void crearDescuento(String marcaProducto, LocalDate fechaDesde, LocalDate fechaHasta, float porcentaje);
 	
 	List<Descuento> listarDescuentosActivos();
+	
+	List<DescuentoDTO> listarDescuentosActivosDTO();
 }
 

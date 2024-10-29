@@ -1,19 +1,17 @@
 package ar.unrn.tp.ui;
 import javax.swing.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import ar.unrn.tp.dto.DescuentoDTO;
 import ar.unrn.tp.dto.ProductoDTO;
 import ar.unrn.tp.dto.TarjetaDTO;
 import ar.unrn.tp.jpa.servicios.JPAClienteService;
 import ar.unrn.tp.jpa.servicios.JPADescuentoService;
 import ar.unrn.tp.jpa.servicios.JPAProductoService;
 import ar.unrn.tp.jpa.servicios.JPAVentaService;
-import ar.unrn.tp.modelo.Descuento;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
 import java.awt.*;
@@ -22,9 +20,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ArrayList;
 
-@Component
 public class TiendaUI extends JFrame {
-
     private JList<ProductoDTO> productList;
     private JList<TarjetaDTO> cardList;
     private JTextArea discountArea;
@@ -37,8 +33,11 @@ public class TiendaUI extends JFrame {
     private JPADescuentoService descuentoService;
     private JPAProductoService productoService;
     private JPAVentaService ventaService;
+    
+    @Value("${id.cliente}")
+    private Long idCliente;
 
-    public TiendaUI(Long idCliente) {
+    public TiendaUI() {
     	this.clienteService = new JPAClienteService(em);
     	this.productoService = new JPAProductoService(em);
     	this.descuentoService = new JPADescuentoService(em);
@@ -66,7 +65,7 @@ public class TiendaUI extends JFrame {
         // DTO?
         discountArea = new JTextArea();
         discountArea.setText(String.join("\n", 
-        	    descuentoService.listarDescuentosActivos().stream().map(Descuento::toString).toList()));
+        	    descuentoService.listarDescuentosActivosDTO().stream().map(DescuentoDTO::toString).toList()));
         discountArea.setEditable(false);
         panel.add(new JScrollPane(discountArea));
 
@@ -127,7 +126,7 @@ public class TiendaUI extends JFrame {
         }
     }
 
-   /* public static void main(String[] args) {
+   public static void main(String[] args) {/*
         // Datos simulados
         List<String> productos = new ArrayList<>();
         productos.add("Producto 1");
@@ -147,9 +146,10 @@ public class TiendaUI extends JFrame {
 
         // Crear el EntityManager
         EntityManager em = emf.createEntityManager();
-
+		*/
         // Crear y mostrar la UI
-        TiendaUI tienda = new TiendaUI(em, 1L);
+        TiendaUI tienda = new TiendaUI();
         tienda.setVisible(true);
-    }*/
+        
+    }
 }
