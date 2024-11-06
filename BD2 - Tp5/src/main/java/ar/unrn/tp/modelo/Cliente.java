@@ -58,7 +58,7 @@ public class Cliente {
 	public void agregarTarjeta(Tarjeta tarjeta) {
 		tarjetas.add(tarjeta);
 	}
-	
+	/*
 	public Long getId() {
 		return id;
 	}
@@ -101,7 +101,7 @@ public class Cliente {
 
 	public void setTarjetas(List<Tarjeta> tarjetas) {
 		this.tarjetas = tarjetas;
-	}
+	}*/
 
 	@Override
 	public int hashCode() {

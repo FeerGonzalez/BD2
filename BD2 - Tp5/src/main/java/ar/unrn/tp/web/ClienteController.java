@@ -3,6 +3,7 @@ package ar.unrn.tp.web;
 
 import java.util.List;
 
+import ar.unrn.tp.modelo.Cliente;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,11 @@ public class ClienteController {
 	public ClienteController(JPAClienteService clienteService) {
 	   this.clienteService = clienteService;
 	}
+
+    @GetMapping("traer-cliente/{idCliente}")
+    public ClienteDTO traerClienteId(@PathVariable Long idCliente){
+        return clienteService.buscarClienteDTO(idCliente);
+    }
 
 	@PostMapping("/crear")
 	public ResponseEntity<String> crearCliente(@RequestBody ClienteDTO clienteDTO) {

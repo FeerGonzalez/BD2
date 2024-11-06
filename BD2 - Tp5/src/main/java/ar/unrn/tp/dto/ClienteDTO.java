@@ -23,15 +23,15 @@ public class ClienteDTO {
 		this.dni = dni;
 		this.email = email;
 	}
-    /*
-	public ClienteDTO(Long id, String nombre, String apellido, String dni, String email, List<TarjetaDTO> tarjetas) {
+
+	public ClienteDTO(Long id, String nombre, String apellido, String dni, String email) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
 		this.email = email;
-		this.tarjetas = tarjetas;
-	}*/
+
+	}
 	/*
 	public Long getId() {
 		return id;

@@ -2,6 +2,7 @@ package ar.unrn.tp.api;
 
 import java.util.List;
 
+import ar.unrn.tp.dto.ClienteDTO;
 import ar.unrn.tp.dto.TarjetaDTO;
 import ar.unrn.tp.modelo.Cliente;
 import ar.unrn.tp.modelo.Tarjeta;
@@ -16,9 +17,11 @@ public interface ClienteService {
 
 	 //Devuelve las tarjetas de un cliente espec�fico
 	List<Tarjeta> listarTarjetas(Long idCliente);
-	
+
 	Cliente buscarCliente(Long idCliente);
-	
+
+	ClienteDTO buscarClienteDTO(Long idCliente);
+
 	Tarjeta buscarTarjetaCliente(Long idTarjeta);
 	
 	TarjetaDTO buscarTarjetaClienteDTO(Long idTarjeta);

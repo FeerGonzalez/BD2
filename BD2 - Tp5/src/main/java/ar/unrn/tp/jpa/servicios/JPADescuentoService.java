@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.unrn.tp.dto.DescuentoCompraDTO;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 
@@ -57,19 +58,28 @@ public class JPADescuentoService implements DescuentoService {
 	}
 
 	@Override
-	public List<Descuento> listarDescuentosActivosSobreCompra() {
-		List<Descuento> listaDeDescuentos = em.createQuery("SELECT d FROM Descuento d WHERE tipo = ", Descuento.class).getResultList();
-		return List.of();
+	public List<DescuentoCompra> listarDescuentosActivosSobreCompra() {
+		List<DescuentoCompra> listaDeDescuentos = em.createQuery("SELECT d FROM Descuento d WHERE tipo = DescuentoCompra ").getResultList();
+		List<DescuentoCompra> listaDeDescuentosActivos = new ArrayList<>();
+
+		for (DescuentoCompra descuento : listaDeDescuentos) {
+			if(descuento.estaActiva()){
+				listaDeDescuentosActivos.add(descuento);
+			}
+
+		}
+
+		return listaDeDescuentosActivos;
 	}
 
 	@Override
-	public List<Descuento> listarDescuentosActivosSobreProducto() {
+	public List<DescuentoProducto> listarDescuentosActivosSobreProducto() {
 		return List.of();
 	}
 
 	@Override
 	public List<DescuentoDTO> listarDescuentosActivosDTO() {
-		List<Descuento> listaDeDescuentosActivos = listarDescuentosActivos();
+		/*List<Descuento> listaDeDescuentosActivos = listarDescuentosActivos();
 		List<DescuentoDTO> listaDeDescuentosActivosDTO = new ArrayList<>();
 		
 		for (Descuento descuento : listaDeDescuentosActivos) {
@@ -77,6 +87,9 @@ public class JPADescuentoService implements DescuentoService {
 		}
 		
 		return listaDeDescuentosActivosDTO;
+
+		 */
+		return null;
 	}
 
 }

@@ -7,12 +7,15 @@ import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
-public class DescuentoDTO {
+public abstract class DescuentoDTO {
 	private Long id;
 	private LocalDate fechaInicio;
 	private LocalDate fechaFin;
 	private float porcentaje;
-	private String tipo;
+	//private String marcaProducto;
+	//private String tipoTarjeta;
+
+
 
 	/*
 	public DescuentoDTO(Long id, LocalDate fechaInicio, LocalDate fechaFin, float porcentaje, String tipo) {

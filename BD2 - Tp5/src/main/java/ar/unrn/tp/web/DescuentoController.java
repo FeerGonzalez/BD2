@@ -2,7 +2,9 @@ package ar.unrn.tp.web;
 
 import java.util.List;
 
+import ar.unrn.tp.dto.DescuentoCompraDTO;
 import ar.unrn.tp.dto.DescuentoDTO;
+import ar.unrn.tp.dto.DescuentoProductoDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +21,10 @@ public class DescuentoController {
 	}
 
 	@PostMapping("/crear-descuento-compra")
-	public ResponseEntity<String> crearDescuentoSobreTotal(@RequestBody DescuentoDTO descuentoCompraDTO) {
+	public ResponseEntity<String> crearDescuentoSobreTotal(@RequestBody DescuentoCompraDTO descuentoCompraDTO) {
 		try {
 			descuentoService.crearDescuentoSobreTotal(
-					descuentoCompraDTO.getTipo(),
+					descuentoCompraDTO.getTipoTarjeta(),
 					descuentoCompraDTO.getFechaInicio(),
 					descuentoCompraDTO.getFechaFin(),
 					descuentoCompraDTO.getPorcentaje()
@@ -34,13 +36,13 @@ public class DescuentoController {
 	}
 
 	@PostMapping("/crear-descuento-producto")
-	public ResponseEntity<String> crearDescuentoSobreProducto(@RequestBody DescuentoDTO descuentoProductoDTO) {
+	public ResponseEntity<String> crearDescuentoSobreProducto(@RequestBody DescuentoProductoDTO descuentoProductoDTO) {
 		try {
 			descuentoService.crearDescuentoSobreProducto(
 					descuentoProductoDTO.getMarcaProducto(),
 					descuentoProductoDTO.getFechaInicio(),
 					descuentoProductoDTO.getFechaFin(),
-					descuentoProductoDTO.getPorcentajeDescuento()
+					descuentoProductoDTO.getPorcentaje()
 			);
 			return ResponseEntity.ok("Descuento sobre producto creado exitosamente");
 		} catch (IllegalArgumentException e) {

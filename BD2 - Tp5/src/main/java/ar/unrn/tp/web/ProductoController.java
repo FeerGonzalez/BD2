@@ -2,6 +2,7 @@ package ar.unrn.tp.web;
 
 import ar.unrn.tp.modelo.Producto;
 import ar.unrn.tp.jpa.servicios.JPAProductoService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,7 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    @GetMapping
+    @GetMapping("/traer-productos")
     public List<Producto> obtenerProductos() {
         return productoService.listarProductos();
     }

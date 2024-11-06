@@ -3,6 +3,7 @@ package ar.unrn.tp.jpa.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.unrn.tp.dto.ClienteDTO;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 
@@ -88,10 +89,16 @@ public class JPAClienteService implements ClienteService {
 
 	     return cliente.getTarjetas();
 	}
+
+	@Override
+	public Cliente buscarCliente(Long idCliente) {
+		return em.find(Cliente.class, idCliente);
+	}
 	
 	@Override
-    public Cliente buscarCliente(Long idCliente) {
-        return em.find(Cliente.class, idCliente);
+    public ClienteDTO buscarClienteDTO(Long idCliente) {
+		Cliente cliente = buscarCliente(idCliente);
+		return new ClienteDTO(cliente.getId(), cliente.getNombre(),cliente.getApellido(), cliente.getDni().toString(), cliente.getEmail() );
     }
 
     @Override

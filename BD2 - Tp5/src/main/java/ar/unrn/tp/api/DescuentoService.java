@@ -5,6 +5,8 @@ import java.util.List;
 
 import ar.unrn.tp.dto.DescuentoDTO;
 import ar.unrn.tp.modelo.Descuento;
+import ar.unrn.tp.modelo.DescuentoCompra;
+import ar.unrn.tp.modelo.DescuentoProducto;
 
 public interface DescuentoService {
 	// validar que las fechas no se superpongan
@@ -16,9 +18,9 @@ public interface DescuentoService {
 	
 	List<Descuento> listarDescuentosActivos();
 
-	List<Descuento> listarDescuentosActivosSobreCompra();
+	List<DescuentoCompra> listarDescuentosActivosSobreCompra();
 
-	List<Descuento> listarDescuentosActivosSobreProducto();
+	List<DescuentoProducto> listarDescuentosActivosSobreProducto();
 
 	List<DescuentoDTO> listarDescuentosActivosDTO();
 }

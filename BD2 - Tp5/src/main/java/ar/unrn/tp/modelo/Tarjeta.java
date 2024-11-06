@@ -58,11 +58,11 @@ public class Tarjeta {
 	public String getCodigo() {
 		return codigo;
 	}
-
+	*/
 	public String getTipo() {
 		return tipo.toString();
 	}
-
+	/*
 	public float getSaldo() {
 		return saldo;
 	}
