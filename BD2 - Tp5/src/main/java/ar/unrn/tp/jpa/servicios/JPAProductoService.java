@@ -29,22 +29,6 @@ public class JPAProductoService implements ProductoService {
 	public void crearProducto(String codigo, String descripcion, float precio, String IdCategoria, String marca) {
         Producto producto = new Producto(codigo, descripcion, IdCategoria, precio, marca);
         em.persist(producto);
-        /*EntityTransaction tx = em.getTransaction();
-        try {
-            tx.begin();
-            Producto producto = new Producto(codigo, descripcion, IdCategoria, precio, marca);
-            em.persist(producto);
-            tx.commit();
-        } catch (Exception e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        } finally {
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
-        }
-
-		 */
 		
 	}
 
@@ -61,27 +45,7 @@ public class JPAProductoService implements ProductoService {
         producto.setCategoria(IdCategoria);
         producto.setMarca(marca);
         em.merge(producto);
-        /*EntityTransaction tx = em.getTransaction();
-        try {
-            tx.begin();
-            Producto producto = em.getReference(Producto.class, idProducto);
-            producto.setCodigo(codigo);
-            producto.setDescripcion(descripcion);
-            producto.setPrecio(precio);
-            producto.setCategoria(IdCategoria);
-            producto.setMarca(marca);
-            tx.commit();
-        } catch (Exception e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        } finally {
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
-        }
 
-		 */
-		
 	}
 	
 	@Override
@@ -100,7 +64,7 @@ public class JPAProductoService implements ProductoService {
 		List<ProductoDTO> listaProductosDTO = new ArrayList<>();
 		for (Producto producto : listaProductos) {
 			listaProductosDTO.add(new ProductoDTO(producto.getId(), producto.getCodigo(), producto.getDescripcion(),
-    				   producto.getCategoria(), producto.getMarca(), producto.getPrecio()));
+    				   producto.getCategoria(), producto.getMarca(), producto.getPrecio(), producto.getVersion()));
 		}
 		
 		return listaProductosDTO;
@@ -110,7 +74,7 @@ public class JPAProductoService implements ProductoService {
     public ProductoDTO buscarProductoDTO(long idProducto) {
        Producto producto = buscarProducto(idProducto);
        return new ProductoDTO(producto.getId(), producto.getCodigo(), producto.getDescripcion(),
-               producto.getCategoria(), producto.getMarca(), producto.getPrecio());
+               producto.getCategoria(), producto.getMarca(), producto.getPrecio(), producto.getVersion());
     }
 
 	@Override

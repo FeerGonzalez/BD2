@@ -21,6 +21,7 @@ import ar.unrn.tp.modelo.Venta;
 public class Main {
 
 	public static void main(String[] args) {
+            /*
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-objectdb");
         EntityManager em = emf.createEntityManager();
 
@@ -58,6 +59,8 @@ public class Main {
 
         em.close();
         emf.close();
+
+        */
 
 	}
 

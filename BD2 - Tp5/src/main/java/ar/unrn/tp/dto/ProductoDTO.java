@@ -12,6 +12,7 @@ public class ProductoDTO {
 	private String categoria;
 	private String marca;
 	private float precio;
+	private Long version;
 	/*
 	public ProductoDTO(Long id, int codigo, String descripcion, String categoria, String marca, float precio) {
 		this.id = id;

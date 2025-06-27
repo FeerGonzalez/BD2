@@ -1,7 +1,9 @@
 package ar.unrn.tp.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import ar.unrn.tp.modelo.Venta;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -10,12 +12,28 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class VentaDTO {
-	@NotNull
+	private Long id;
 	private Long idCliente;
-	@NotEmpty
 	private List<Long> listaDeProductos;
-	@NotNull
-    private Long idTarjeta;
+	private float montoTotal;
+	private LocalDate fecha;
+	private String numeroVenta;
+	private Long idTarjeta;
+
+	public VentaDTO(){
+
+	}
+
+	public VentaDTO(Venta venta) {
+		this.id = venta.getId();
+		this.idCliente = venta.getCliente().getId();
+		this.listaDeProductos = venta.getListaProductos().stream()
+				.map(pv -> pv.getProducto().getId())
+				.toList();;
+		this.montoTotal = venta.getMontoTotal();
+		this.fecha = venta.getFecha();
+		this.numeroVenta = venta.getNumeroVenta();
+	}
     /*
     public VentaDTO(Long idCliente, List<Long> productos, Long idTarjeta) {
     	this.idCliente = idCliente;

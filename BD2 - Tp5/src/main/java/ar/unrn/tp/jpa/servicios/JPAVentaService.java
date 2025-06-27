@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import ar.unrn.tp.dto.VentaDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityManager;
@@ -28,11 +31,15 @@ public class JPAVentaService implements VentaService {
 	private final EntityManager em;
     private final ClienteService clienteService;
     private final ProductoService productoService;
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 	
-	public JPAVentaService(EntityManager em, ClienteService clienteService, ProductoService productoService) {
+	public JPAVentaService(EntityManager em, ClienteService clienteService, ProductoService productoService, RedisTemplate<String, Object> redisTemplate) {
         this.em = em;
         this.clienteService = clienteService;
         this.productoService = productoService;
+
+        this.redisTemplate = redisTemplate;
     }
 
 	@Override
@@ -62,7 +69,20 @@ public class JPAVentaService implements VentaService {
         }
 
         Venta venta = carrito.realizarCompra(tarjeta);
+        venta.setNumeroVenta(generarNumeroVenta());
         em.persist(venta);
+
+        String key = "ultimas-ventas:" + cliente.getId();
+        List<VentaDTO> anteriores = (List<VentaDTO>) redisTemplate.opsForValue().get(key);
+        if (anteriores == null) anteriores = new ArrayList<>();
+
+        anteriores.add(0, new VentaDTO(venta));
+
+        if (anteriores.size() > 3) {
+            anteriores = anteriores.subList(0, 3);
+        }
+
+        redisTemplate.opsForValue().set(key, anteriores);
 	}
 
 	@Override
@@ -98,8 +118,6 @@ public class JPAVentaService implements VentaService {
         for (DescuentoCompra descuentoCompra : descuentosCompra) {
 			carrito.agregarDescuentoDeCompra(descuentoCompra);
 		}
-        
-        
 
         return carrito.calcularTotal(tarjeta);
 	}
@@ -109,4 +127,43 @@ public class JPAVentaService implements VentaService {
 		 return em.createQuery("SELECT v FROM Venta v", Venta.class).getResultList();
 	}
 
+    public List<VentaDTO> obtenerUltimasVentas(Long clienteId) {
+        String key = "ultimas-ventas:" + clienteId;
+
+        @SuppressWarnings("unchecked")
+        List<VentaDTO> ventas = (List<VentaDTO>) redisTemplate.opsForValue().get(key);
+        if (ventas != null) {
+            return ventas;
+        }
+
+        // Si no está en cache, buscar en la BD
+        List<Venta> ultimasVentas = em.createQuery(
+                        "SELECT v FROM Venta v WHERE v.cliente.id = :id ORDER BY v.fecha DESC", Venta.class)
+                .setParameter("id", clienteId)
+                .setMaxResults(3)
+                .getResultList();
+
+        List<VentaDTO> ventaDTOs = ultimasVentas.stream()
+                .map(VentaDTO::new)
+                .toList();
+
+        redisTemplate.opsForValue().set(key, ventaDTOs);
+
+        return ventaDTOs;
+    }
+
+    private String generarNumeroVenta() {
+        int anioActual = LocalDate.now().getYear();
+
+        // Buscar la cantidad de ventas realizadas este año
+        Long cantidadVentasEsteAnio = em.createQuery(
+                        "SELECT COUNT(v) FROM Venta v WHERE YEAR(v.fecha) = :anio", Long.class)
+                .setParameter("anio", anioActual)
+                .getSingleResult();
+
+        // N empieza en 1, así que se suma 1 a la cantidad actual
+        long numero = cantidadVentasEsteAnio + 1;
+
+        return numero + "-" + anioActual;
+    }
 }

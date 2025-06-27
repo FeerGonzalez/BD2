@@ -36,6 +36,17 @@ public class Venta {
 		this.listaProductos = lista;
 		this.montoTotal = monto;
 	}
+	/*
+	public Venta(Cliente cliente, List<ProductoVendido> lista, float monto, String numeroVenta) {
+		verificarListaDeProductos(lista);
+
+		this.fecha = LocalDate.now();
+		this.cliente = cliente;
+		this.listaProductos = lista;
+		this.montoTotal = monto;
+		this.numeroVenta = numeroVenta;
+	}
+	*/
 
 	@Override
 	public int hashCode() {
