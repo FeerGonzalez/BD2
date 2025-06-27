@@ -14,10 +14,6 @@ public abstract class DescuentoDTO {
 	private LocalDate fechaInicio;
 	private LocalDate fechaFin;
 	private float porcentaje;
-	//private String marcaProducto;
-	//private String tipoTarjeta;
-
-
 
 	/*
 	public DescuentoDTO(Long id, LocalDate fechaInicio, LocalDate fechaFin, float porcentaje, String tipo) {

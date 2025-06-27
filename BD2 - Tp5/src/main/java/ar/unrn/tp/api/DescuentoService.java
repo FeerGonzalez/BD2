@@ -7,9 +7,6 @@ import ar.unrn.tp.dto.DescuentoCompraDTO;
 import ar.unrn.tp.dto.DescuentoGenericoDTO;
 import ar.unrn.tp.dto.DescuentoProductoDTO;
 import ar.unrn.tp.dto.DescuentoDTO;
-import ar.unrn.tp.modelo.Descuento;
-import ar.unrn.tp.modelo.DescuentoCompra;
-import ar.unrn.tp.modelo.DescuentoProducto;
 
 public interface DescuentoService {
 	// validar que las fechas no se superpongan

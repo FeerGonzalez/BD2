@@ -8,7 +8,6 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 
 import ar.unrn.tp.api.ClienteService;
 import ar.unrn.tp.dto.TarjetaDTO;

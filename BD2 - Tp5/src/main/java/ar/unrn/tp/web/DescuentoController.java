@@ -3,14 +3,12 @@ package ar.unrn.tp.web;
 import java.util.List;
 
 import ar.unrn.tp.dto.DescuentoCompraDTO;
-import ar.unrn.tp.dto.DescuentoDTO;
 import ar.unrn.tp.dto.DescuentoGenericoDTO;
 import ar.unrn.tp.dto.DescuentoProductoDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import ar.unrn.tp.jpa.servicios.JPADescuentoService;
-import ar.unrn.tp.modelo.Descuento;
 
 @RestController
 @RequestMapping("/descuentos")

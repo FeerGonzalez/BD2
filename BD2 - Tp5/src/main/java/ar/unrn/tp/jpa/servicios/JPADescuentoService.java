@@ -11,7 +11,6 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 
 import ar.unrn.tp.api.DescuentoService;
 import ar.unrn.tp.dto.DescuentoDTO;

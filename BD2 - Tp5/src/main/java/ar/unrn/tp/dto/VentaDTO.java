@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import ar.unrn.tp.modelo.Venta;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -34,13 +32,8 @@ public class VentaDTO {
 		this.fecha = venta.getFecha();
 		this.numeroVenta = venta.getNumeroVenta();
 	}
+
     /*
-    public VentaDTO(Long idCliente, List<Long> productos, Long idTarjeta) {
-    	this.idCliente = idCliente;
-    	this.listaDeProductos = productos;
-    	this.idTarjeta = idTarjeta;
-    }
-    
 	public Long getIdCliente() {
 		return idCliente;
 	}

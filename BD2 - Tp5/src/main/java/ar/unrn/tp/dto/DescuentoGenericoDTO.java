@@ -1,6 +1,5 @@
 package ar.unrn.tp.dto;
 
-import ar.unrn.tp.modelo.Descuento;
 import ar.unrn.tp.modelo.DescuentoCompra;
 import ar.unrn.tp.modelo.DescuentoProducto;
 import lombok.AllArgsConstructor;

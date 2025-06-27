@@ -1,14 +1,11 @@
 package ar.unrn.tp.web;
 
-import ar.unrn.tp.dto.ClienteDTO;
 import ar.unrn.tp.dto.ProductoDTO;
 import ar.unrn.tp.exception.VersionException;
-import ar.unrn.tp.modelo.Producto;
 import ar.unrn.tp.jpa.servicios.JPAProductoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
