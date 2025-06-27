@@ -3,10 +3,19 @@ package ar.unrn.tp.modelo;
 import java.time.LocalDate;
 
 import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 @DiscriminatorValue("Compra")
+@Entity
 public class DescuentoCompra extends Descuento{
+	@Enumerated(EnumType.STRING)
 	private TipoTarjeta tarjeta;
+
+	public DescuentoCompra(){
+
+	}
 
 	public DescuentoCompra(LocalDate fechaInicio, LocalDate fechaFin, String tarjeta, float porcentaje) {
 		super(fechaInicio, fechaFin, porcentaje);

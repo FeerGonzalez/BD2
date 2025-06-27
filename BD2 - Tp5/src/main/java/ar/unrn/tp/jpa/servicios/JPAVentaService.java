@@ -1,5 +1,6 @@
 package ar.unrn.tp.jpa.servicios;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,8 +48,10 @@ public class JPAVentaService implements VentaService {
         Carrito carrito = new Carrito(cliente);
         listaProductos.forEach(carrito::agregarProducto);
 
-        List<DescuentoCompra> descuentosCompra = em.createQuery("SELECT d FROM Descuento d WHERE tipo_descuento = Compra", DescuentoCompra.class).getResultList();
-        List<DescuentoProducto> descuentosProductos = em.createQuery("SELECT d FROM Descuento d WHERE tipo_descuento = Producto", DescuentoProducto.class).getResultList();
+        List<DescuentoCompra> descuentosCompra = em.createQuery("SELECT d FROM DescuentoCompra d", DescuentoCompra.class).getResultList();
+
+        List<DescuentoProducto> descuentosProductos = em.createQuery("SELECT d FROM DescuentoProducto d", DescuentoProducto.class).getResultList();
+
 
         for (DescuentoProducto descuentoProducto : descuentosProductos) {
             carrito.agregarDescuentoDeProducto(descuentoProducto);
@@ -74,10 +77,20 @@ public class JPAVentaService implements VentaService {
 
         Carrito carrito = new Carrito();
         listaProductos.forEach(carrito::agregarProducto);
-        
-        List<DescuentoCompra> descuentosCompra = em.createQuery("SELECT d FROM Descuento d WHERE d.activo = true", DescuentoCompra.class).getResultList();
-        List<DescuentoProducto> descuentosProductos = em.createQuery("SELECT d FROM Descuento d WHERE d.activo = true", DescuentoProducto.class).getResultList();
-        
+
+        List<DescuentoCompra> descuentosCompra = em.createQuery(
+                        "SELECT d FROM DescuentoCompra d WHERE :hoy BETWEEN d.fechaInicio AND d.fechaFin",
+                        DescuentoCompra.class)
+                .setParameter("hoy", LocalDate.now())
+                .getResultList();
+
+        List<DescuentoProducto> descuentosProductos = em.createQuery(
+                        "SELECT d FROM DescuentoProducto d WHERE :hoy BETWEEN d.fechaInicio AND d.fechaFin",
+                        DescuentoProducto.class)
+                .setParameter("hoy", LocalDate.now())
+                .getResultList();
+
+
         for (DescuentoProducto descuentoProducto : descuentosProductos) {
 			carrito.agregarDescuentoDeProducto(descuentoProducto);
 		}

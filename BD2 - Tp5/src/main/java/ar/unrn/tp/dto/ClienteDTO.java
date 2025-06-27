@@ -32,6 +32,7 @@ public class ClienteDTO {
 		this.email = email;
 
 	}
+
 	/*
 	public Long getId() {
 		return id;

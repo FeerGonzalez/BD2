@@ -113,4 +113,15 @@ public class JPAProductoService implements ProductoService {
                producto.getCategoria(), producto.getMarca(), producto.getPrecio());
     }
 
+	@Override
+	public float CalcularPrecioProductos(List<ProductoDTO> lista){
+		float precioTotal=0;
+
+		for(ProductoDTO producto :lista){
+			precioTotal += producto.getPrecio();
+		}
+
+		return precioTotal;
+	}
+
 }

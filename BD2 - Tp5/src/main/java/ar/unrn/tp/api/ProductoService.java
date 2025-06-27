@@ -18,4 +18,6 @@ public interface ProductoService {
 	List<ProductoDTO> listarProductosDTO();
 	 
 	ProductoDTO buscarProductoDTO(long idProducto);
+
+	float CalcularPrecioProductos(List<ProductoDTO> lista);
 }

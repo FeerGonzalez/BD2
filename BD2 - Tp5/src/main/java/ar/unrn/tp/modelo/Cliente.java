@@ -4,14 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -26,8 +19,12 @@ public class Cliente {
 	@Column(unique = true)
 	private Integer dni;
 	private String email;
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Tarjeta> tarjetas;
+
+	public Cliente(){
+
+	}
 	
 	public Cliente(String nombre, String apellido, Integer dni, String email) {
 		verificarCampo(nombre);
@@ -56,7 +53,7 @@ public class Cliente {
 	}
 	
 	public void agregarTarjeta(Tarjeta tarjeta) {
-		tarjetas.add(tarjeta);
+		this.tarjetas.add(tarjeta);
 	}
 	/*
 	public Long getId() {

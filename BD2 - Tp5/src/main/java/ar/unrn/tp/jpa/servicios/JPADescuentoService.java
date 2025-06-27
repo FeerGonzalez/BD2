@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.unrn.tp.dto.DescuentoCompraDTO;
+import ar.unrn.tp.dto.DescuentoGenericoDTO;
+import ar.unrn.tp.dto.DescuentoProductoDTO;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +35,7 @@ public class JPADescuentoService implements DescuentoService {
 	public void crearDescuentoSobreTotal(String marcaTarjeta, LocalDate fechaDesde, LocalDate fechaHasta, float porcentaje) {
 		Descuento descuento = new DescuentoCompra(fechaDesde, fechaHasta, marcaTarjeta, porcentaje);
 		em.persist(descuento);
-		
+
 	}
 
 	@Override
@@ -44,27 +46,40 @@ public class JPADescuentoService implements DescuentoService {
 	}
 
 	@Override
-	public List<Descuento> listarDescuentosActivos() {
+	public List<DescuentoGenericoDTO> listarDescuentosActivos() {
         List<Descuento> listaDeDescuentos = em.createQuery("SELECT d FROM Descuento d", Descuento.class).getResultList();
         List<Descuento> listaDeDescuentosActivos = new ArrayList<>();
-        
+
+		List<DescuentoGenericoDTO> listaDescuentosActivosDTO = new ArrayList<>();
+
         for (Descuento descuento : listaDeDescuentos) {
 			if(descuento.estaActiva()) {
 				listaDeDescuentosActivos.add(descuento);
 			}
 		}
-        
-        return listaDeDescuentosActivos;
+
+		for (Descuento descuento : listaDeDescuentosActivos){
+			if (descuento instanceof DescuentoCompra) {
+				listaDescuentosActivosDTO.add(new DescuentoGenericoDTO((DescuentoCompra) descuento));
+			}
+
+			if (descuento instanceof DescuentoProducto) {
+				listaDescuentosActivosDTO.add(new DescuentoGenericoDTO((DescuentoProducto) descuento));
+			}
+		}
+
+        return listaDescuentosActivosDTO;
 	}
 
 	@Override
-	public List<DescuentoCompra> listarDescuentosActivosSobreCompra() {
-		List<DescuentoCompra> listaDeDescuentos = em.createQuery("SELECT d FROM Descuento d WHERE tipo = DescuentoCompra ").getResultList();
-		List<DescuentoCompra> listaDeDescuentosActivos = new ArrayList<>();
+	public List<DescuentoCompraDTO> listarDescuentosActivosSobreCompra() {
+		List<DescuentoCompra> listaDeDescuentos = em.createQuery(
+				"SELECT d FROM DescuentoCompra d", DescuentoCompra.class).getResultList();
+		List<DescuentoCompraDTO> listaDeDescuentosActivos = new ArrayList<>();
 
 		for (DescuentoCompra descuento : listaDeDescuentos) {
 			if(descuento.estaActiva()){
-				listaDeDescuentosActivos.add(descuento);
+				listaDeDescuentosActivos.add(new DescuentoCompraDTO(descuento.getId(),descuento.getFechaInicio(),descuento.getFechaFin(),descuento.getPorcentaje(),descuento.getTarjeta()));
 			}
 
 		}
@@ -73,8 +88,19 @@ public class JPADescuentoService implements DescuentoService {
 	}
 
 	@Override
-	public List<DescuentoProducto> listarDescuentosActivosSobreProducto() {
-		return List.of();
+	public List<DescuentoProductoDTO> listarDescuentosActivosSobreProducto() {
+		List<DescuentoProducto> listaDeDescuentos = em.createQuery(
+				"SELECT d FROM DescuentoProducto d", DescuentoProducto.class).getResultList();
+		List<DescuentoProductoDTO> listaDeDescuentosActivos = new ArrayList<>();
+
+		for (DescuentoProducto descuento : listaDeDescuentos) {
+			if(descuento.estaActiva()){
+				listaDeDescuentosActivos.add(new DescuentoProductoDTO(descuento.getId(), descuento.getFechaInicio(),descuento.getFechaFin(),descuento.getPorcentaje(),descuento.getMarca()));
+			}
+
+		}
+
+		return listaDeDescuentosActivos;
 	}
 
 	@Override

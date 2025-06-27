@@ -23,6 +23,10 @@ public class Tarjeta {
 	private	TipoTarjeta tipo;
 	private float saldo;
 	private boolean estado;
+
+	public Tarjeta(){
+
+	}
 	
 	public Tarjeta (String codigo, String tipo) {
 		verificarCodigoValido(codigo);
@@ -31,6 +35,7 @@ public class Tarjeta {
 		this.codigo = codigo;
 		this.tipo = TipoTarjeta.valueOf(tipo);
 		this.saldo = 0;
+		this.estado = true;
 	}
 	
 	public Tarjeta (String codigo, String tipo, float saldo) {
@@ -40,6 +45,7 @@ public class Tarjeta {
 		this.codigo = codigo;
 		this.tipo = TipoTarjeta.valueOf(tipo);
 		this.saldo = saldo;
+		this.estado = true;
 	}
 	
 	public Tarjeta(String codigo, String tipo, float saldo, boolean estado) {

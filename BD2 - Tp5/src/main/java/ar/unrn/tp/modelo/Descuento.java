@@ -3,13 +3,11 @@ package ar.unrn.tp.modelo;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_descuento")
 @Entity
 public abstract class Descuento {
@@ -19,7 +17,11 @@ public abstract class Descuento {
 	protected LocalDate fechaInicio;
 	protected LocalDate fechaFin;
 	protected float porcentaje;
-	
+
+	public Descuento(){
+
+	}
+
 	public Descuento(LocalDate fechaInicio, LocalDate fechaFin, float porcentaje) {
 		verificarFecha(fechaInicio, fechaFin);
 		verificarCampo(((Float) porcentaje).toString());

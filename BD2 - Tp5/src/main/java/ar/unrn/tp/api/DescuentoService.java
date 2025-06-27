@@ -3,6 +3,9 @@ package ar.unrn.tp.api;
 import java.time.LocalDate;
 import java.util.List;
 
+import ar.unrn.tp.dto.DescuentoCompraDTO;
+import ar.unrn.tp.dto.DescuentoGenericoDTO;
+import ar.unrn.tp.dto.DescuentoProductoDTO;
 import ar.unrn.tp.dto.DescuentoDTO;
 import ar.unrn.tp.modelo.Descuento;
 import ar.unrn.tp.modelo.DescuentoCompra;
@@ -16,11 +19,11 @@ public interface DescuentoService {
 	 // validar que las fechas no se superpongan
 	void crearDescuentoSobreProducto(String marcaProducto, LocalDate fechaDesde, LocalDate fechaHasta, float porcentaje);
 	
-	List<Descuento> listarDescuentosActivos();
+	List<DescuentoGenericoDTO> listarDescuentosActivos();
 
-	List<DescuentoCompra> listarDescuentosActivosSobreCompra();
+	List<DescuentoCompraDTO> listarDescuentosActivosSobreCompra();
 
-	List<DescuentoProducto> listarDescuentosActivosSobreProducto();
+	List<DescuentoProductoDTO> listarDescuentosActivosSobreProducto();
 
 	List<DescuentoDTO> listarDescuentosActivosDTO();
 }

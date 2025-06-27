@@ -3,11 +3,11 @@ version: '3.8'
 services:
   db:
     image: postgres:12.10  # Puedes usar 'postgres:latest' si no necesitas una versión específica
-    container_name: db2-tp3-4
+    container_name: db2-tp5
     environment:
       POSTGRES_USER: postgres  # Usuario de la base de datos
       POSTGRES_PASSWORD: admin   # Contraseña para el usuario
-      POSTGRES_DB: db2-tp3-4 # Nombre de la base de datos inicial
+      POSTGRES_DB: db2tp5 # Nombre de la base de datos inicial
     ports:
       - "5002:5432"  # Mapea el puerto 5432 del contenedor al puerto 5002 del host
     volumes:

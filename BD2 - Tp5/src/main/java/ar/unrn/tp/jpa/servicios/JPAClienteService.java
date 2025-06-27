@@ -56,30 +56,11 @@ public class JPAClienteService implements ClienteService {
 	}
 
 	@Override
-	public void agregarTarjeta(Long idCliente, String nro, String marca) {
+	public void agregarTarjeta(Long idCliente, String nro, String tipo) {
         Cliente cliente = em.find(Cliente.class, idCliente);
-        Tarjeta nuevaTarjeta = new Tarjeta(nro, marca);
+        Tarjeta nuevaTarjeta = new Tarjeta(nro, tipo);
         cliente.agregarTarjeta(nuevaTarjeta);
         em.merge(cliente);
-        /*
-		EntityTransaction tx = em.getTransaction();
-        try {
-            tx.begin();
-            Cliente cliente = em.find(Cliente.class, idCliente);
-            Tarjeta nuevaTarjeta = new Tarjeta(nro, marca);
-            cliente.agregarTarjeta(nuevaTarjeta);
-            em.merge(cliente);
-            tx.commit();
-        } catch (Exception e) {
-            tx.rollback();
-            throw new RuntimeException(e);
-        } finally {
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
-        }
-
-         */
 		
 	}
 
@@ -98,7 +79,8 @@ public class JPAClienteService implements ClienteService {
 	@Override
     public ClienteDTO buscarClienteDTO(Long idCliente) {
 		Cliente cliente = buscarCliente(idCliente);
-		return new ClienteDTO(cliente.getId(), cliente.getNombre(),cliente.getApellido(), cliente.getDni().toString(), cliente.getEmail() );
+
+		return new ClienteDTO(cliente.getId(), cliente.getNombre(),cliente.getApellido(), cliente.getDni().toString(), cliente.getEmail(), listarTarjetasDTO(idCliente) );
     }
 
     @Override

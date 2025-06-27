@@ -63,7 +63,7 @@ public class ClienteController {
         }
     }
 
-    @GetMapping("/cliente-tarjetas/{idCliente}")
+    @GetMapping("/buscar-tarjetas/{idCliente}")
     public List<TarjetaDTO> obtenerTarjetas(@PathVariable Long idCliente) {
         return clienteService.listarTarjetasDTO(idCliente);
     }

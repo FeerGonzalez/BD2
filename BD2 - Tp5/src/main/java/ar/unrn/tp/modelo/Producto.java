@@ -21,10 +21,13 @@ public class Producto {
 	private float precio;
 	@Version
 	private Long version;
-	
+
+	public Producto() {
+
+	}
 	
 	public Producto(String codigo, String descripcion, String categoria, float precio, String marca){
-		verificarCampo(codigo.toString());
+		verificarCampo(codigo);
 		verificarCampo(descripcion);
 		verificarCampo(categoria);
 		verificarPrecioValido(precio);

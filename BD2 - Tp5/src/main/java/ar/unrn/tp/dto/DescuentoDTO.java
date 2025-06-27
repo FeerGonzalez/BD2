@@ -2,11 +2,13 @@ package ar.unrn.tp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public abstract class DescuentoDTO {
 	private Long id;
 	private LocalDate fechaInicio;

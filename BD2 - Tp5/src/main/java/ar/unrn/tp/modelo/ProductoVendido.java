@@ -15,6 +15,10 @@ public class ProductoVendido {
 	@ManyToOne
 	private Producto producto;
 	private float precio;
+
+	public ProductoVendido(){
+
+	}
 	
 	public ProductoVendido(Producto producto, float precio) {
 		this.producto = producto;

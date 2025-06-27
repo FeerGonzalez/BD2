@@ -3,10 +3,16 @@ package ar.unrn.tp.modelo;
 import java.time.LocalDate;
 
 import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
 @DiscriminatorValue("Producto")
+@Entity
 public class DescuentoProducto extends Descuento{
 	private String marca;
+
+	public DescuentoProducto(){
+
+	}
 
 	public DescuentoProducto(LocalDate fechaInicio, LocalDate fechaFin, String marca, float porcentaje) {
 		super(fechaInicio, fechaFin, porcentaje);

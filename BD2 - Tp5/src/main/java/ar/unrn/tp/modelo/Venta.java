@@ -1,17 +1,11 @@
 package ar.unrn.tp.modelo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -24,11 +18,15 @@ public class Venta {
 	private LocalDate fecha;
 	@ManyToOne
 	private Cliente cliente;
-	@OneToMany
-	private List<ProductoVendido> listaProductos;
+	@OneToMany(cascade = CascadeType.PERSIST)
+	private List<ProductoVendido> listaProductos = new ArrayList<>();
 	private float montoTotal;
 	@Column(unique = true)
 	private String numeroVenta;
+
+	public Venta(){
+
+	}
 	
 	public Venta(Cliente cliente, List<ProductoVendido> lista, float monto) {
 		verificarListaDeProductos(lista);
