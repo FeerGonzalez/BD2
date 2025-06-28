@@ -1,17 +1,11 @@
 package Tp_Mongo.Tp_Mongo.web;
 
-import Tp_Mongo.Tp_Mongo.dto.AutorCantidadDTO;
-
-import Tp_Mongo.Tp_Mongo.dto.PageDTO;
 import Tp_Mongo.Tp_Mongo.dto.PostDTO;
 
-import Tp_Mongo.Tp_Mongo.model.Page;
 import Tp_Mongo.Tp_Mongo.model.Post;
 import Tp_Mongo.Tp_Mongo.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

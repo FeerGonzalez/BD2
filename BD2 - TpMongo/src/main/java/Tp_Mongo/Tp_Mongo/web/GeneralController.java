@@ -29,28 +29,9 @@ public class GeneralController {
         Aggregation aggregation = Aggregation.newAggregation(groupOperation);
         AggregationResults<AutorCantidadDTO> results = mongoTemplate.aggregate(aggregation, "posts", AutorCantidadDTO.class);
         return results.getMappedResults();
-        /*
-        Aggregation agg = Aggregation.newAggregation(
-                Aggregation.group("author").count().as("count"),
-                Aggregation.project("count").and("author").previousOperation()
-        );
 
-        AggregationResults<AutorCantidadDTO> results = mongoTemplate.aggregate(agg, "post", AutorCantidadDTO.class);
-        return results.getMappedResults();
-
-         */
     }
 
-    /*
-    @GetMapping("/search/{text}")
-    public List<PostDTO> searchByText(@PathVariable String text) {
-        return postRepository.findByTextContainingIgnoreCase(text)
-                .stream()
-                .map(post -> new PostDTO(post.getId(), post.getTitle(), post.getResume(), post.getAuthor(), post.getDate()))
-                .toList();
-    }
-    
-     */
     @GetMapping("/search/{text}")
     public List<PostDTO> searchByText(@PathVariable String text) {
         return postRepository.searchInTitleTextOrTags(text)
