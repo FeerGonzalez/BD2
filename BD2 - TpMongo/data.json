@@ -1,0 +1,120 @@
+{
+  "pages": [
+    {
+      "_id": { "$oid": "665f0c000000000000000001" },
+      "title": "Sobre este Blog",
+      "text": "Este blog está dedicado a todo lo relacionado con los videojuegos: análisis, noticias, historia y más.",
+      "author": "Fernando Gamer",
+      "date": { "$date": "2025-06-20T12:00:00.000Z" }
+    },
+    {
+      "_id": { "$oid": "665f0c000000000000000002" },
+      "title": "Sobre el Autor",
+      "text": "Soy un apasionado de los videojuegos desde los 90. Aquí comparto experiencias, reflexiones y novedades del mundo gamer.",
+      "author": "Fernando Gamer",
+      "date": { "$date": "2025-06-21T15:30:00.000Z" }
+    }
+  ],
+  "posts": [
+    {
+      "_id": { "$oid": "665f0d000000000000000001" },
+      "title": "La evolución de los RPGs",
+      "resume": "Un recorrido por los RPGs más influyentes de las últimas décadas.",
+      "text": "Desde Final Fantasy hasta The Witcher, los juegos de rol han marcado generaciones.",
+      "tags": ["RPG", "historia", "rol"],
+      "relatedLinks": ["https://www.rpgfan.com", "https://www.ign.com/articles/rpg-history"],
+      "author": "Carlos Ruiz",
+      "date": { "$date": "2025-06-10T11:00:00.000Z" }
+    },
+    {
+      "_id": { "$oid": "665f0d000000000000000002" },
+      "title": "Top 5 juegos indie del año",
+      "resume": "Pequeños estudios, grandes obras.",
+      "text": "Repasamos los mejores videojuegos independientes de 2025.",
+      "tags": ["indie", "recomendaciones", "premios"],
+      "relatedLinks": ["https://indiegames.com"],
+      "author": "Sofía Moreno",
+      "date": { "$date": "2025-06-15T13:45:00.000Z" }
+    },
+    {
+      "_id": { "$oid": "665f0d000000000000000003" },
+      "title": "¿Qué es el Ray Tracing?",
+      "resume": "Luces, sombras y realismo: el futuro gráfico ya está aquí.",
+      "text": "Exploramos cómo funciona el Ray Tracing y qué aporta a los juegos modernos.",
+      "tags": ["tecnología", "ray tracing", "gráficos"],
+      "relatedLinks": ["https://www.nvidia.com/en-us/geforce/graphics-cards/rtx-30-series/"],
+      "author": "Jorge Boles",
+      "date": { "$date": "2025-06-17T10:15:00.000Z" }
+    },
+    {
+      "_id": { "$oid": "665f0d000000000000000004" },
+      "title": "Juegos de terror psicológico",
+      "resume": "Más allá del susto fácil: el miedo que te hace pensar.",
+      "text": "Desde Silent Hill hasta Visage, los juegos que exploran la mente.",
+      "tags": ["terror", "psicológico", "análisis"],
+      "relatedLinks": ["https://bloody-disgusting.com/games/"],
+      "author": "Ernesto José Vega",
+      "date": { "$date": "2025-06-19T20:00:00.000Z" }
+    },
+    {
+      "_id": { "$oid": "665f0d000000000000000005" },
+      "title": "El regreso de los plataformas 2D",
+      "resume": "Cuando lo retro se vuelve tendencia.",
+      "text": "Juegos como Celeste y Hollow Knight reviven el amor por el plataformeo clásico.",
+      "tags": ["plataformas", "retro", "indie"],
+      "relatedLinks": ["https://www.celestegame.com"],
+      "author": "Laura Díaz",
+      "date": { "$date": "2025-06-11T16:20:00.000Z" }
+    },
+    {
+      "_id": { "$oid": "665f0d000000000000000006" },
+      "title": "E-sports en Latinoamérica",
+      "resume": "Un mercado en pleno crecimiento.",
+      "text": "Equipos, ligas y torneos que están marcando el rumbo en la región.",
+      "tags": ["e-sports", "Latam", "competencia"],
+      "relatedLinks": ["https://www.lolesports.com"],
+      "author": "Carlos Ruiz",
+      "date": { "$date": "2025-06-22T14:00:00.000Z" }
+    },
+    {
+      "_id": { "$oid": "665f0d000000000000000007" },
+      "title": "La música en los videojuegos",
+      "resume": "Mucho más que fondo sonoro.",
+      "text": "Compositores como Uematsu o Coker han dejado huella en nuestras memorias.",
+      "tags": ["música", "soundtrack", "inmersión"],
+      "relatedLinks": ["https://vgmdb.net"],
+      "author": "Julio Mark",
+      "date": { "$date": "2025-06-23T09:10:00.000Z" }
+    },
+    {
+      "_id": { "$oid": "665f0d000000000000000008" },
+      "title": "Multijugador local vs online",
+      "resume": "¿Dónde está la verdadera diversión?",
+      "text": "Comparativa entre el multijugador tradicional y el online moderno.",
+      "tags": ["multiplayer", "co-op", "online"],
+      "relatedLinks": ["https://www.co-optimus.com"],
+      "author": "Ernesto José Vega",
+      "date": { "$date": "2025-06-25T11:55:00.000Z" }
+    },
+    {
+      "_id": { "$oid": "665f0d000000000000000009" },
+      "title": "El fenómeno de los Battle Royale",
+      "resume": "De PUBG a Fortnite: el género que conquistó millones.",
+      "text": "Cómo nació el género y por qué sigue vigente.",
+      "tags": ["battle royale", "multijugador", "tendencias"],
+      "relatedLinks": ["https://www.epicgames.com/fortnite"],
+      "author": "Jorge Boles",
+      "date": { "$date": "2025-06-26T17:30:00.000Z" }
+    },
+    {
+      "_id": { "$oid": "665f0d00000000000000000a" },
+      "title": "Juegos narrativos imperdibles",
+      "resume": "Cuando el guion es el protagonista.",
+      "text": "Títulos como Life is Strange o Firewatch nos muestran el poder de una buena historia.",
+      "tags": ["narrativa", "aventura", "emociones"],
+      "relatedLinks": ["https://www.firewatchgame.com"],
+      "author": "Sofía Moreno",
+      "date": { "$date": "2025-06-27T13:00:00.000Z" }
+    }
+  ]
+}
