@@ -1,0 +1,66 @@
+//Ejecutar para entrar a la consola de gremlin
+./bin/gremlin.sh
+
+//Inicializar Grafo desde 0
+graph = TinkerGraph.open()
+g = graph.traversal()
+
+// Bares
+barUno = g.addV('bar').property('nombre', 'Flow').next()
+barDos = g.addV('bar').property('nombre', 'Blem').next()
+barTres = g.addV('bar').property('nombre', 'Box').next()
+barCuatro = g.addV('bar').property('nombre', 'Roma').next()
+
+// Cervezas
+quilmes = g.addV('cerveza').property('nombre', 'Quilmes').next()
+heineken = g.addV('cerveza').property('nombre', 'Heineken').next()
+stella = g.addV('cerveza').property('nombre', 'Stella').next()
+brahma = g.addV('cerveza').property('nombre', 'Brahma').next()
+
+// Personas
+jose = g.addV('persona').property('nombre', 'Jose').next()
+jorge = g.addV('persona').property('nombre', 'Jorge').next()
+javier = g.addV('persona').property('nombre', 'Javier').next()
+maria = g.addV('persona').property('nombre', 'Maria').next()
+
+// Relación Sirve
+g.V(barUno).addE('sirve').to(quilmes).iterate()
+g.V(barUno).addE('sirve').to(stella).iterate()
+g.V(barDos).addE('sirve').to(heineken).iterate()
+g.V(barDos).addE('sirve').to(quilmes).iterate()
+g.V(barTres).addE('sirve').to(stella).iterate()
+g.V(barCuatro).addE('sirve').to(brahma).iterate()
+g.V(barCuatro).addE('sirve').to(heineken).iterate()
+
+// Relación Le gusta
+g.V(jose).addE('le_gusta').to(heineken).iterate()
+g.V(jose).addE('le_gusta').to(brahma).iterate()
+g.V(jorge).addE('le_gusta').to(quilmes).iterate()
+g.V(javier).addE('le_gusta').to(stella).iterate()
+g.V(javier).addE('le_gusta').to(heineken).iterate()
+g.V(maria).addE('le_gusta').to(stella).iterate()
+
+// Relación Frecuenta
+g.V(jose).addE('frecuenta').to(barCuatro).iterate()
+g.V(jorge).addE('frecuenta').to(barDos).iterate()
+g.V(javier).addE('frecuenta').to(barUno).iterate()
+g.V(maria).addE('frecuenta').to(barTres).iterate()
+
+//Consultas:
+//1. Listar todas las personas
+g.V().hasLabel('persona').values('nombre')
+
+//2. Todos los bares que sirven Quilmes
+g.V().has('cerveza','nombre','Quilmes').in('sirve').values('nombre')
+
+//3. Las cervezas que le gustan a Jose
+g.V().has('persona','nombre','Jose').out('le_gusta').values('nombre')
+
+//4. Los bares que sirven la cerveza que le gusta a Jorge
+g.V().has('persona','nombre','Jorge').out('le_gusta').in('sirve').values('nombre')
+
+//5. Las personas que frecuentan bares que sirven alguna cerveza que les gusta
+g.V().hasLabel('persona').as('p').out('le_gusta').in('sirve').in('frecuenta').where(eq('p')).values('nombre')
+
+//6. Las personas que frecuentan los bares que sirven la cerveza que le gusta a Javier
+g.V().has('persona','nombre','Javier').out('le_gusta').in('sirve').in('frecuenta').values('nombre')
